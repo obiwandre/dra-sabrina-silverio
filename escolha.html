@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escolha a versão — Dra. Sabrina Silvério</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 500;
+      color: #C0908B;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 14px;
+      font-weight: 300;
+      color: #888;
+      letter-spacing: 2px;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    .cards {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 900px;
+    }
+    .card {
+      background: #222;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 400px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      border: 2px solid transparent;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .card-rose:hover { border-color: #C0908B; }
+    .card-clean:hover { border-color: #B8847E; }
+    .card-preview {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-preview iframe {
+      width: 1080px;
+      height: 1920px;
+      transform: scale(0.37);
+      transform-origin: top left;
+      pointer-events: none;
+      border: none;
+    }
+    .card-info {
+      padding: 24px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .card-rose .card-title { color: #C0908B; }
+    .card-clean .card-title { color: #B8847E; }
+    .card-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: #888;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .card-colors {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .color-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #333;
+    }
+    .card-btn {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+    .card-rose .card-btn {
+      background: #C0908B;
+      color: #fff;
+    }
+    .card-rose .card-btn:hover { background: #9B6F6A; }
+    .card-clean .card-btn {
+      background: #B8847E;
+      color: #fff;
+    }
+    .card-clean .card-btn:hover { background: #9B6D66; }
+    .footer-note {
+      margin-top: 50px;
+      font-size: 12px;
+      color: #555;
+      text-align: center;
+      line-height: 1.8;
+    }
+    @media (max-width: 480px) {
+      .card { width: 100%; }
+      .card-preview { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sabrina, qual versão você prefere?</h1>
+  <p class="subtitle">Clique para ver cada uma em tela cheia</p>
+
+  <div class="cards">
+
+    <a href="rose.html" class="card card-rose">
+      <div class="card-preview">
+        <iframe src="rose.html"></iframe>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Versão Rosé</div>
+        <div class="card-desc">
+          Tons quentes de rosé, marrom e creme. Transmite acolhimento,
+          feminilidade e sofisticação. Combina com a logo de fundo rosé.
+        </div>
+        <div class="card-colors">
+          <div class="color-dot" style="background: #C0908B;"></div>
+          <div class="color-dot" style="background: #D4A9A4;"></div>
+          <div class="color-dot" style="background: #FFF5F3;"></div>
+          <div class="color-dot" style="background: #3D2B28;"></div>
+          <div class="color-dot" style="background: #9B6F6A;"></div>
+        </div>
+        <div class="card-btn">Ver versão rosé</div>
+      </div>
+    </a>
+
+    <a href="clean.html" class="card card-clean">
+      <div class="card-preview">
+        <iframe src="clean.html"></iframe>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Versão Clean</div>
+        <div class="card-desc">
+          Predominância de brancos com detalhes em rosé cobre.
+          Ultra-minimalista, moderna e elegante. Combina com a logo clara.
+        </div>
+        <div class="card-colors">
+          <div class="color-dot" style="background: #B8847E;"></div>
+          <div class="color-dot" style="background: #CDA199;"></div>
+          <div class="color-dot" style="background: #F5F2F0;"></div>
+          <div class="color-dot" style="background: #2C2C2C;"></div>
+          <div class="color-dot" style="background: #9B6D66;"></div>
+        </div>
+        <div class="card-btn">Ver versão clean</div>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="footer-note">
+    Clique em uma das opções para ver o site completo.<br>
+    Depois me diz qual prefere que a gente coloca no ar!
+  </p>
+
+</body>
+</html>

@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dra. Sabrina Silvério — Esteticista em Campinas. Botox, Preenchimento, Bioestimulador, Ultrassom Microfocado e mais. Agende sua avaliação.">
+  <title>Dra. Sabrina Silvério | Versão Rosé</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---- Reset & Base ---- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #C0908B;
+      --gold-light: #D4A9A4;
+      --gold-dark: #9B6F6A;
+      --nude: #FFF5F3;
+      --nude-dark: #F5E6E3;
+      --dark: #3D2B28;
+      --dark-light: #5C4440;
+      --white: #FFFFFF;
+      --font-title: 'Playfair Display', Georgia, serif;
+      --font-body: 'Montserrat', 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- Hero ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 24px;
+      background: linear-gradient(170deg, var(--white) 0%, var(--nude) 50%, var(--nude-dark) 100%);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      right: 40px;
+      bottom: 40px;
+      border: 1px solid rgba(192, 144, 139, 0.25);
+      pointer-events: none;
+    }
+
+    .hero-stars {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 12px;
+      margin-bottom: 30px;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-family: var(--font-title);
+      font-size: clamp(36px, 8vw, 64px);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 3vw, 18px);
+      font-weight: 300;
+      color: var(--dark-light);
+      line-height: 1.7;
+      max-width: 460px;
+      margin-bottom: 8px;
+    }
+
+    .hero-location {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--dark-light);
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      opacity: 0.7;
+    }
+
+    .hero-location span {
+      margin: 0 6px;
+    }
+
+    .hero-logo {
+      width: clamp(260px, 50vw, 400px);
+      height: auto;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo {
+      width: 180px;
+      height: auto;
+      margin-bottom: 16px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 24px auto;
+    }
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(192, 144, 139, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background: #1F1412;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ---- Scroll indicator ---- */
+    .scroll-hint {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-hint span {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    .scroll-hint-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 1.5px solid var(--gold);
+      border-bottom: 1.5px solid var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.4;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ---- Section base ---- */
+    .section {
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 500;
+      color: var(--dark);
+      text-align: center;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--dark-light);
+      text-align: center;
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto 50px;
+    }
+
+    /* ---- Procedimentos ---- */
+    .procedures {
+      background: var(--white);
+    }
+
+    .proc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .proc-card {
+      background: var(--nude);
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proc-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .proc-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .proc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .proc-card-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .proc-card-name {
+      font-family: var(--font-title);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .proc-card-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--dark-light);
+      line-height: 1.7;
+    }
+
+    /* ---- Sobre / About ---- */
+    .about {
+      background: var(--dark);
+      color: var(--white);
+      position: relative;
+    }
+
+    .about .section-label { color: var(--gold-light); }
+    .about .section-title { color: var(--white); }
+    .about .section-desc { color: var(--nude-dark); }
+
+    .about-content {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .about-image {
+      width: 320px;
+      height: 400px;
+      background: var(--nude);
+      position: relative;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .about-text h3 {
+      font-family: var(--font-title);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--nude-dark);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .about-values {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .about-value {
+      text-align: center;
+    }
+
+    .about-value-number {
+      font-family: var(--font-title);
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .about-value-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--nude-dark);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ---- Diferenciais ---- */
+    .differentials {
+      background: var(--nude);
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+
+    .diff-item-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .diff-item-title {
+      font-family: var(--font-title);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .diff-item-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--dark-light);
+      line-height: 1.7;
+    }
+
+    /* ---- Depoimentos ---- */
+    .testimonials {
+      background: var(--white);
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .test-card {
+      background: var(--nude);
+      padding: 40px 30px;
+      position: relative;
+    }
+
+    .test-card-quote {
+      font-family: var(--font-title);
+      font-size: 60px;
+      color: var(--gold);
+      opacity: 0.3;
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      line-height: 1;
+    }
+
+    .test-card-text {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--dark-light);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .test-card-stars {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+    }
+
+    .test-card-author {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 1px;
+    }
+
+    .test-card-proc {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--dark-light);
+      margin-top: 4px;
+    }
+
+    /* ---- Localizacao ---- */
+    .location {
+      background: var(--white);
+    }
+
+    .location-content {
+      display: flex;
+      gap: 40px;
+      align-items: stretch;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .location-map {
+      flex: 1;
+      min-width: 300px;
+      min-height: 350px;
+      background: var(--nude);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--nude-dark);
+    }
+
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .location-info {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .location-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .location-item-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--nude);
+      border-radius: 50%;
+    }
+
+    .location-item-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .location-item-value {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    /* ---- CTA Final ---- */
+    .cta-section {
+      background: linear-gradient(170deg, #3D2B28 0%, #1F1412 100%);
+      padding: 100px 24px;
+      text-align: center;
+    }
+
+    .cta-section .section-title {
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .cta-section .section-desc {
+      color: var(--nude-dark);
+      margin-bottom: 40px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ---- Footer ---- */
+    .footer {
+      background: #2A1F1D;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: var(--font-title);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .footer-handle {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: #8B7572;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .footer-social a {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(192, 144, 139, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.3s;
+    }
+
+    .footer-social a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: #5C4440;
+      letter-spacing: 1px;
+    }
+
+    /* ---- Navbar mobile ---- */
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(192, 144, 139, 0.15);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      z-index: 100;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav a {
+      flex: 1;
+      max-width: 180px;
+      text-align: center;
+      padding: 12px 8px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dark-light);
+      transition: color 0.2s;
+      border-radius: 6px;
+    }
+
+    .nav a:hover {
+      color: var(--gold);
+      background: rgba(192, 144, 139, 0.06);
+    }
+
+    .nav .nav-cta {
+      background: var(--gold);
+      color: var(--white);
+      border-radius: 6px;
+    }
+
+    .nav .nav-cta:hover {
+      background: var(--gold-dark);
+      color: var(--white);
+    }
+
+    /* ---- WhatsApp Float ---- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 101;
+      transition: all 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .hero::before { top: 20px; left: 20px; right: 20px; bottom: 20px; }
+      .section { padding: 70px 20px; }
+      .about-image { width: 260px; height: 320px; }
+      .about-content { gap: 40px; }
+      .proc-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .proc-card { padding: 28px 20px; }
+      .proc-card-icon { font-size: 30px; }
+      .proc-card-name { font-size: 16px; }
+      .proc-card-desc { font-size: 12px; }
+      .location-content { flex-direction: column; }
+      .location-map { min-height: 280px; }
+      .nav { gap: 4px; padding: 10px 12px; }
+      .nav a { font-size: 9px; padding: 10px 4px; letter-spacing: 1px; }
+    }
+
+    @media (max-width: 480px) {
+      .proc-grid { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: 1fr; gap: 30px; }
+      .test-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Extra bottom padding for nav */
+    body { padding-bottom: 70px; }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="inicio">
+    <img src="img/logo-fundo-claro.png" alt="Sabrina Silvério — Saúde Estética" class="hero-logo">
+    <div class="divider"></div>
+    <p class="hero-tagline">
+      Realçando a sua beleza natural com tecnologia,
+      cuidado e resultados que transformam.
+    </p>
+    <p class="hero-location">
+      📍 Taquaral <span>·</span> Campinas — SP
+    </p>
+    <div class="hero-buttons">
+      <a href="#whatsapp" class="btn btn-gold">📱 Agendar Avaliação</a>
+      <a href="#procedimentos" class="btn btn-outline">Ver Procedimentos</a>
+    </div>
+    <div class="scroll-hint">
+      <span>Explore</span>
+      <div class="scroll-hint-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ==================== PROCEDIMENTOS ==================== -->
+  <section class="section procedures" id="procedimentos">
+    <div class="section-inner">
+      <div class="section-label">Serviços</div>
+      <h2 class="section-title">Procedimentos</h2>
+      <p class="section-desc">
+        Cada protocolo é personalizado para realçar o que você
+        tem de mais bonito, com segurança e naturalidade.
+      </p>
+
+      <div class="proc-grid">
+        <div class="proc-card">
+          <div class="proc-card-icon">💉</div>
+          <div class="proc-card-name">Botox</div>
+          <div class="proc-card-desc">Suaviza linhas de expressão e proporciona um olhar descansado e natural.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">✨</div>
+          <div class="proc-card-name">Bioestimulador de Colágeno</div>
+          <div class="proc-card-desc">Estimula a produção natural de colágeno para firmeza e rejuvenescimento.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">🔬</div>
+          <div class="proc-card-name">Ultrassom Microfocado</div>
+          <div class="proc-card-desc">Lifting sem cirurgia. Firmeza e contorno facial em uma única sessão.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">💋</div>
+          <div class="proc-card-name">Preenchimento Labial</div>
+          <div class="proc-card-desc">Volume, definição e hidratação para lábios naturalmente harmônicos.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">👃</div>
+          <div class="proc-card-name">Rinomodelação</div>
+          <div class="proc-card-desc">Corrija imperfeições no nariz sem cirurgia, com resultado imediato.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">💎</div>
+          <div class="proc-card-name">Preenchimento Facial</div>
+          <div class="proc-card-desc">Harmonize o contorno do rosto com ácido hialurônico de alta qualidade.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">🧵</div>
+          <div class="proc-card-name">Fios de PDO</div>
+          <div class="proc-card-desc">Sustentação e lifting imediato com fios absorvíveis de última geração.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">🧬</div>
+          <div class="proc-card-name">Exossomos Autólogos</div>
+          <div class="proc-card-desc">Regeneração celular avançada com fatores de crescimento do próprio organismo.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">🧖‍♀️</div>
+          <div class="proc-card-name">Limpeza de Pele</div>
+          <div class="proc-card-desc">Protocolo completo de higienização, extração e hidratação profunda.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">💪</div>
+          <div class="proc-card-name">Indutor Muscular</div>
+          <div class="proc-card-desc">Tonificação muscular não invasiva para definição e fortalecimento.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">💧</div>
+          <div class="proc-card-name">Enzimas</div>
+          <div class="proc-card-desc">Intradermoterapia para redução de gordura localizada e modelagem.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">🍑</div>
+          <div class="proc-card-name">Harmonização de Glúteos</div>
+          <div class="proc-card-desc">Contorno, volume e lifting glúteo com técnicas avançadas e resultado natural.</div>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card-icon">✏️</div>
+          <div class="proc-card-name">Design de Sobrancelha</div>
+          <div class="proc-card-desc">Moldagem personalizada para valorizar o seu olhar e expressão facial.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DIFERENCIAIS ==================== -->
+  <section class="section differentials">
+    <div class="section-inner">
+      <div class="section-label">Por que me escolher</div>
+      <h2 class="section-title">Meus Diferenciais</h2>
+      <div class="divider" style="margin-bottom: 50px;"></div>
+
+      <div class="diff-grid">
+        <div class="diff-item">
+          <div class="diff-item-icon">🎯</div>
+          <div class="diff-item-title">Resultado Natural</div>
+          <div class="diff-item-desc">Meu compromisso é com a naturalidade. Cada procedimento respeita a sua anatomia e identidade.</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-item-icon">🔒</div>
+          <div class="diff-item-title">Segurança Total</div>
+          <div class="diff-item-desc">Produtos de primeira linha, protocolos rigorosos e ambiente esterilizado para sua tranquilidade.</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-item-icon">🤝</div>
+          <div class="diff-item-title">Atendimento Personalizado</div>
+          <div class="diff-item-desc">Avaliação individualizada para entender suas necessidades e montar o melhor plano de tratamento.</div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-item-icon">📍</div>
+          <div class="diff-item-title">Localização Privilegiada</div>
+          <div class="diff-item-desc">Consultório no Taquaral, em Campinas, com fácil acesso e ambiente acolhedor.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DEPOIMENTOS ==================== -->
+  <section class="section testimonials" id="depoimentos">
+    <div class="section-inner">
+      <div class="section-label">Depoimentos</div>
+      <h2 class="section-title">O que dizem minhas pacientes</h2>
+      <div class="divider" style="margin-bottom: 50px;"></div>
+
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-card-quote">"</div>
+          <div class="test-card-stars">★ ★ ★ ★ ★</div>
+          <p class="test-card-text">
+            Sempre tive medo de resultado artificial, mas a Dra. Sabrina
+            entendeu exatamente o que eu queria. Resultado incrível e super natural!
+          </p>
+          <div class="test-card-author">— Maria C.</div>
+          <div class="test-card-proc">Botox + Preenchimento Labial</div>
+        </div>
+
+        <div class="test-card">
+          <div class="test-card-quote">"</div>
+          <div class="test-card-stars">★ ★ ★ ★ ★</div>
+          <p class="test-card-text">
+            Fiz o bioestimulador e a diferença na firmeza da minha pele
+            foi absurda. Todo mundo pergunta o que eu fiz. Super recomendo!
+          </p>
+          <div class="test-card-author">— Ana P.</div>
+          <div class="test-card-proc">Bioestimulador PLLA</div>
+        </div>
+
+        <div class="test-card">
+          <div class="test-card-quote">"</div>
+          <div class="test-card-stars">★ ★ ★ ★ ★</div>
+          <p class="test-card-text">
+            Ambiente lindo, atendimento impecável e resultado que superou
+            minhas expectativas. Já agendei minha próxima sessão!
+          </p>
+          <div class="test-card-author">— Juliana R.</div>
+          <div class="test-card-proc">Ultrassom Microfocado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LOCALIZACAO ==================== -->
+  <section class="section location" id="local">
+    <div class="section-inner">
+      <div class="section-label">Localização</div>
+      <h2 class="section-title">Onde me encontrar</h2>
+      <div class="divider" style="margin-bottom: 50px;"></div>
+
+      <div class="location-content">
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.5!2d-47.0575!3d-22.8750!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c5e0a0a0a0%3A0x0!2sAv.+Almeida+Garret%2C+565+-+Taquaral%2C+Campinas+-+SP!5e0!3m2!1spt-BR!2sbr!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="location-info">
+          <div class="location-item">
+            <div class="location-item-icon">📍</div>
+            <div>
+              <div class="location-item-label">Endereço</div>
+              <div class="location-item-value">
+                Av. Almeida Garret, 565<br>
+                Taquaral — Campinas, SP
+              </div>
+            </div>
+          </div>
+
+          <div class="location-item">
+            <div class="location-item-icon">📱</div>
+            <div>
+              <div class="location-item-label">WhatsApp</div>
+              <div class="location-item-value">
+                (19) 99356-7353
+              </div>
+            </div>
+          </div>
+
+          <div class="location-item">
+            <div class="location-item-icon">📸</div>
+            <div>
+              <div class="location-item-label">Instagram</div>
+              <div class="location-item-value">
+                <a href="https://instagram.com/dra.sabrinasilverio" target="_blank" style="color: var(--gold); font-weight: 500;">
+                  @dra.sabrinasilverio
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="#whatsapp" class="btn btn-gold" style="align-self: flex-start; margin-top: 10px;">
+            📱 Enviar Mensagem
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <div class="section-label" style="color: var(--gold-light);">Pronta para começar?</div>
+      <h2 class="section-title">Agende sua Avaliação</h2>
+      <p class="section-desc">
+        O primeiro passo para a sua transformação é uma conversa.
+        Entre em contato e vamos montar o melhor plano para você.
+      </p>
+      <div class="cta-buttons">
+        <a href="#whatsapp" class="btn btn-gold">📱 WhatsApp</a>
+        <a href="https://instagram.com/dra.sabrinasilverio" target="_blank" class="btn btn-outline" style="border-color: var(--gold-light); color: var(--gold-light);">
+          📸 Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <img src="img/logo-fundo-rose.png" alt="Sabrina Silvério" class="footer-logo">
+    <div class="footer-handle">@dra.sabrinasilverio</div>
+    <div class="footer-social">
+      <a href="https://instagram.com/dra.sabrinasilverio" target="_blank" title="Instagram">📸</a>
+      <a href="#whatsapp" title="WhatsApp">📱</a>
+      <a href="#" title="Localização">📍</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 Dra. Sabrina Silverio — Todos os direitos reservados
+    </div>
+  </footer>
+
+  <!-- ==================== NAV FIXA ==================== -->
+  <nav class="nav">
+    <a href="#inicio">Inicio</a>
+    <a href="#procedimentos">Servicos</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#local">Local</a>
+    <a href="#whatsapp" class="nav-cta">Agendar</a>
+  </nav>
+
+  <!-- ==================== WHATSAPP FLOAT ==================== -->
+  <a href="#whatsapp" class="whatsapp-float" id="whatsapp" title="Fale pelo WhatsApp">
+    💬
+  </a>
+
+  <!-- Smooth scroll script -->
+  <script>
+    // Replace #whatsapp links with actual WhatsApp number when available
+    // Format: https://wa.me/5519XXXXXXXXX?text=Ola!%20Gostaria%20de%20agendar%20uma%20avaliacao.
+    document.querySelectorAll('a[href="#whatsapp"]').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        var phone = '5519993567353';
+        var msg = encodeURIComponent('Olá! Vim pelo Instagram e gostaria de agendar uma avaliação com a Dra. Sabrina.');
+        window.open('https://wa.me/' + phone + '?text=' + msg, '_blank');
+      });
+    });
+  </script>
+
+</body>
+</html>
