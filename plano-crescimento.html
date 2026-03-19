@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Crescimento — Dra. Sabrina Silvério</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose: #C0908B;
+            --rose-light: #D4A9A4;
+            --rose-dark: #9B6F6A;
+            --nude: #FFF5F3;
+            --dark: #3D2B28;
+            --dark-light: #5C4440;
+            --white: #FFFFFF;
+            --green: #2ECC71;
+            --blue: #3498DB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--nude);
+            color: var(--dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background: linear-gradient(135deg, var(--rose-dark) 0%, var(--rose) 50%, var(--rose-light) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 70px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .header p {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            font-weight: 300;
+            opacity: 0.92;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .section-title .section-num {
+            display: inline-block;
+            background: var(--rose);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .section-title p {
+            color: var(--dark-light);
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--rose-light);
+            margin: 50px auto;
+            border-radius: 2px;
+        }
+
+        /* ── CARDS GRID ── */
+        .cards-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .cards-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px 28px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.06);
+            border: 1px solid rgba(192,144,139,0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(61,43,40,0.10);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            color: var(--rose-dark);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--nude);
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            padding: 6px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--dark-light);
+        }
+
+        .card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 8px;
+            height: 8px;
+            background: var(--rose-light);
+            border-radius: 50%;
+        }
+
+        /* ── PILAR ICONS ── */
+        .pilar-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .pilar-icon.organico { background: rgba(46,204,113,0.12); }
+        .pilar-icon.baixo-custo { background: rgba(52,152,219,0.12); }
+        .pilar-icon.pago { background: rgba(192,144,139,0.15); }
+
+        /* ── TABLE ── */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 0 auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            min-width: 600px;
+        }
+
+        thead th {
+            background: var(--rose-dark);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 16px 20px;
+            text-align: left;
+        }
+
+        tbody td {
+            padding: 16px 20px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(192,144,139,0.1);
+            color: var(--dark-light);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: var(--nude);
+        }
+
+        .priority-high { color: var(--rose-dark); font-weight: 700; }
+        .priority-med { color: var(--blue); font-weight: 600; }
+        .priority-low { color: var(--dark-light); font-weight: 500; }
+
+        .table-note {
+            text-align: center;
+            margin-top: 20px;
+            padding: 16px 24px;
+            background: var(--white);
+            border-radius: 12px;
+            font-size: 0.92rem;
+            color: var(--dark-light);
+            border-left: 4px solid var(--rose);
+            box-shadow: 0 2px 12px rgba(61,43,40,0.04);
+        }
+
+        .table-note strong {
+            color: var(--dark);
+        }
+
+        /* ── CENARIOS ── */
+        .cenario-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px 28px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.06);
+            border: 2px solid rgba(192,144,139,0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+        }
+
+        .cenario-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(61,43,40,0.10);
+        }
+
+        .cenario-card.destaque {
+            border-color: var(--rose);
+            background: linear-gradient(180deg, var(--white) 0%, rgba(255,245,243,0.5) 100%);
+        }
+
+        .cenario-card.destaque::before {
+            content: 'RECOMENDADO';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--rose) 0%, var(--rose-dark) 100%);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 20px;
+            letter-spacing: 1.5px;
+        }
+
+        .cenario-card h3 {
+            font-size: 1.1rem;
+            color: var(--rose-dark);
+            margin-bottom: 6px;
+        }
+
+        .cenario-valor {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        .cenario-valor span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--dark-light);
+        }
+
+        .cenario-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .cenario-card ul li {
+            padding: 5px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 0.88rem;
+            color: var(--dark-light);
+        }
+
+        .cenario-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 8px;
+            height: 8px;
+            background: var(--rose-light);
+            border-radius: 50%;
+        }
+
+        .cenario-roi {
+            display: inline-block;
+            background: rgba(46,204,113,0.1);
+            color: var(--green);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 8px;
+        }
+
+        .cenario-note {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 0.92rem;
+            color: var(--dark-light);
+            font-style: italic;
+        }
+
+        .cenario-note strong {
+            color: var(--green);
+        }
+
+        /* ── ANUNCIOS RANKING ── */
+        .ranking-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 16px rgba(61,43,40,0.05);
+            border: 1px solid rgba(192,144,139,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .ranking-item:hover {
+            transform: translateX(6px);
+        }
+
+        .ranking-num {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .ranking-item:nth-child(1) .ranking-num { background: linear-gradient(135deg, var(--rose-dark), var(--rose)); }
+        .ranking-item:nth-child(2) .ranking-num { background: linear-gradient(135deg, var(--rose), var(--rose-light)); }
+        .ranking-item:nth-child(3) .ranking-num { background: linear-gradient(135deg, var(--rose-light), #d4b0ab); }
+        .ranking-item:nth-child(4) .ranking-num { background: var(--dark-light); }
+        .ranking-item:nth-child(5) .ranking-num { background: #999; }
+
+        .ranking-content h4 {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .ranking-content p {
+            font-size: 0.88rem;
+            color: var(--dark-light);
+        }
+
+        .ranking-item:nth-child(1) {
+            border-left: 4px solid var(--rose-dark);
+        }
+
+        .ranking-badge {
+            display: inline-block;
+            background: rgba(46,204,113,0.12);
+            color: var(--green);
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-left: 8px;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── GOOGLE MEU NEGOCIO ── */
+        .gmn-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px 36px;
+            box-shadow: 0 4px 24px rgba(61,43,40,0.07);
+            border: 2px solid rgba(52,152,219,0.15);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .gmn-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 600px) {
+            .gmn-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gmn-stat {
+            background: var(--nude);
+            border-radius: 12px;
+            padding: 18px 20px;
+            text-align: center;
+        }
+
+        .gmn-stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .gmn-stat .label {
+            font-size: 0.82rem;
+            color: var(--dark-light);
+            margin-top: 4px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 10px 0;
+            padding-left: 34px;
+            position: relative;
+            font-size: 0.92rem;
+            color: var(--dark-light);
+            border-bottom: 1px solid rgba(192,144,139,0.08);
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 22px;
+            height: 22px;
+            background: rgba(46,204,113,0.12);
+            color: var(--green);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* ── INDICACAO ── */
+        .indicacao-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto 28px;
+        }
+
+        @media (max-width: 700px) {
+            .indicacao-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .indicacao-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.06);
+        }
+
+        .indicacao-card h3 {
+            font-size: 1.05rem;
+            color: var(--rose-dark);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--nude);
+        }
+
+        .indicacao-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .indicacao-card ul li {
+            padding: 6px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 0.88rem;
+            color: var(--dark-light);
+        }
+
+        .indicacao-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        .frase-modelo {
+            background: linear-gradient(135deg, var(--rose-dark), var(--rose));
+            color: var(--white);
+            border-radius: 14px;
+            padding: 24px 28px;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 0.95rem;
+            font-style: italic;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .indicacao-nota {
+            text-align: center;
+            font-size: 0.88rem;
+            color: var(--dark-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ── PERMUTAS ── */
+        .permutas-main {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.06);
+            max-width: 800px;
+            margin: 0 auto 24px;
+        }
+
+        .permutas-main h3 {
+            font-size: 1.15rem;
+            color: var(--rose-dark);
+            margin-bottom: 18px;
+        }
+
+        .permutas-main ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .permutas-main ul li {
+            padding: 7px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--dark-light);
+        }
+
+        .permutas-main ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: var(--rose-light);
+            border-radius: 50%;
+        }
+
+        .parcerias-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+            .parcerias-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .parceria-item {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 18px 22px;
+            box-shadow: 0 2px 12px rgba(61,43,40,0.04);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.9rem;
+            color: var(--dark-light);
+        }
+
+        .parceria-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--nude);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--rose) 0%, var(--rose-light) 100%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -33px;
+            top: 6px;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border: 3px solid var(--rose);
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 26px 24px;
+            box-shadow: 0 4px 18px rgba(61,43,40,0.06);
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 3px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .badge-gratis { background: rgba(46,204,113,0.12); color: var(--green); }
+        .badge-baixo { background: rgba(52,152,219,0.12); color: var(--blue); }
+        .badge-pago { background: rgba(192,144,139,0.15); color: var(--rose-dark); }
+        .badge-otimiza { background: rgba(61,43,40,0.08); color: var(--dark-light); }
+
+        .timeline-content h4 {
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-content ul li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.88rem;
+            color: var(--dark-light);
+        }
+
+        .timeline-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 7px;
+            height: 7px;
+            background: var(--rose-light);
+            border-radius: 50%;
+        }
+
+        /* ── RESUMO CUSTOS ── */
+        .resumo-table tbody tr:last-child {
+            background: var(--nude);
+        }
+
+        .resumo-table tbody tr:last-child td {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .gratis-badge {
+            display: inline-block;
+            background: rgba(46,204,113,0.12);
+            color: var(--green);
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer p {
+            font-size: 0.88rem;
+            margin-bottom: 6px;
+        }
+
+        .footer p:first-child {
+            color: var(--rose-light);
+            font-weight: 500;
+        }
+
+        /* ── UTILITIES ── */
+        .bg-nude {
+            background: var(--nude);
+        }
+
+        .bg-white {
+            background: var(--white);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-8 { margin-top: 8px; }
+        .mb-16 { margin-bottom: 16px; }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 40px 16px;
+            }
+
+            .header {
+                padding: 50px 16px 40px;
+            }
+
+            .card, .cenario-card, .gmn-card, .permutas-main {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══════ HEADER ══════ -->
+    <header class="header">
+        <h1>Plano de Crescimento &amp; Impulsionamento</h1>
+        <p>@dra.sabrinasilverio &mdash; Campinas/SP</p>
+    </header>
+
+    <!-- ══════ 1. ESTRATEGIA EM 3 PILARES ══════ -->
+    <section class="section">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 1</span>
+            <h2>Estratégia em 3 Pilares</h2>
+        </div>
+
+        <div class="cards-3">
+            <!-- Pilar 1 -->
+            <div class="card">
+                <div class="pilar-icon organico">&#127793;</div>
+                <h3>Pilar 1 — Orgânico (Grátis)</h3>
+                <ul>
+                    <li>Instagram Reels: 3-4 por semana</li>
+                    <li>TikTok: 3-5 vídeos por semana (descoberta)</li>
+                    <li>Stories: 4 momentos diários</li>
+                    <li>Google Meu Negócio: perfil completo</li>
+                </ul>
+            </div>
+
+            <!-- Pilar 2 -->
+            <div class="card">
+                <div class="pilar-icon baixo-custo">&#129309;</div>
+                <h3>Pilar 2 — Baixo Custo</h3>
+                <ul>
+                    <li>Programa de indicação entre pacientes</li>
+                    <li>Permutas com micro-influenciadoras locais</li>
+                    <li>Parcerias com salões, academias e lojas femininas</li>
+                </ul>
+            </div>
+
+            <!-- Pilar 3 -->
+            <div class="card">
+                <div class="pilar-icon pago">&#127919;</div>
+                <h3>Pilar 3 — Tráfego Pago</h3>
+                <ul>
+                    <li>Meta Ads (Instagram/Facebook): melhor custo-benefício</li>
+                    <li>Google Ads (quando crescer): captar quem já busca</li>
+                    <li>Impulsionar Reels com melhor performance orgânica</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════ 2. PLATAFORMAS COMPARATIVO ══════ -->
+    <section class="section">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 2</span>
+            <h2>Plataformas — Comparativo</h2>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plataforma</th>
+                        <th>CPC Médio</th>
+                        <th>Melhor Para</th>
+                        <th>Prioridade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Meta Ads (Instagram/Facebook)</strong></td>
+                        <td>R$ 1,50 a R$ 5,00</td>
+                        <td>Conversão e retargeting</td>
+                        <td class="priority-high">&#9733;&#9733;&#9733; PRINCIPAL</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Ads</strong></td>
+                        <td>R$ 5,00 a R$ 20,00</td>
+                        <td>Captar quem já está buscando</td>
+                        <td class="priority-med">&#9733;&#9733; FUTURO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TikTok Ads</strong></td>
+                        <td>R$ 2,00 a R$ 5,00</td>
+                        <td>Alcance entre público jovem</td>
+                        <td class="priority-low">&#9733; OPCIONAL</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-note">
+            <strong>Para começar, Meta Ads é a melhor opção.</strong> TikTok atrai, Instagram converte.
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════ 3. QUANTO INVESTIR ══════ -->
+    <section class="section">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 3</span>
+            <h2>Quanto Investir — Cenários</h2>
+        </div>
+
+        <div class="cards-3">
+            <!-- Cenário 1 -->
+            <div class="cenario-card">
+                <h3>Cenário 1 — Mínimo Viável</h3>
+                <div class="cenario-valor">R$ 300<span>/mês</span></div>
+                <ul>
+                    <li>R$ 300 em Meta Ads</li>
+                    <li>~10 leads/mês (CPL ~R$ 30)</li>
+                    <li>~2-3 agendamentos</li>
+                    <li>Faturamento estimado: R$ 1.600 a R$ 2.400</li>
+                </ul>
+                <span class="cenario-roi">ROI: ~430% a 700%</span>
+            </div>
+
+            <!-- Cenário 2 (Destaque) -->
+            <div class="cenario-card destaque">
+                <h3>Cenário 2 — Recomendado</h3>
+                <div class="cenario-valor">R$ 600<span>/mês</span></div>
+                <ul>
+                    <li>R$ 400 em Meta Ads (captação)</li>
+                    <li>R$ 200 em impulsionamento de Reels</li>
+                    <li>~20 leads/mês</li>
+                    <li>~5 agendamentos</li>
+                    <li>Faturamento estimado: R$ 4.000</li>
+                </ul>
+                <span class="cenario-roi">ROI: ~567%</span>
+            </div>
+
+            <!-- Cenário 3 -->
+            <div class="cenario-card">
+                <h3>Cenário 3 — Crescimento</h3>
+                <div class="cenario-valor">R$ 1.200<span>/mês</span></div>
+                <ul>
+                    <li>R$ 700 em Meta Ads</li>
+                    <li>R$ 300 em impulsionar Reels</li>
+                    <li>R$ 200 em Google Ads</li>
+                    <li>~40 leads/mês</li>
+                    <li>~10 agendamentos</li>
+                    <li>Faturamento estimado: R$ 8.000</li>
+                </ul>
+                <span class="cenario-roi">ROI: ~567%</span>
+            </div>
+        </div>
+
+        <p class="cenario-note">Com apenas <strong>3 novos agendamentos por mês</strong>, o investimento já se paga.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════ 4. MELHORES TIPOS DE ANUNCIO ══════ -->
+    <section class="section">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 4</span>
+            <h2>Melhores Tipos de Anúncio</h2>
+        </div>
+
+        <div style="max-width:750px; margin:0 auto;">
+            <div class="ranking-item">
+                <div class="ranking-num">1</div>
+                <div class="ranking-content">
+                    <h4>Vídeo com depoimento + antes/depois <span class="ranking-badge">MELHOR PERFORMANCE</span></h4>
+                    <p>Combina prova social com resultado visual. Maior taxa de conversão.</p>
+                </div>
+            </div>
+            <div class="ranking-item">
+                <div class="ranking-num">2</div>
+                <div class="ranking-content">
+                    <h4>Antes e depois</h4>
+                    <p>Altamente visual e impactante. Gera curiosidade e desejo.</p>
+                </div>
+            </div>
+            <div class="ranking-item">
+                <div class="ranking-num">3</div>
+                <div class="ranking-content">
+                    <h4>Vídeo educativo / bastidores</h4>
+                    <p>Gera confiança e autoridade. Ótimo para topo de funil.</p>
+                </div>
+            </div>
+            <div class="ranking-item">
+                <div class="ranking-num">4</div>
+                <div class="ranking-content">
+                    <h4>Depoimento em vídeo</h4>
+                    <p>Paciente real relatando a experiência. Credibilidade.</p>
+                </div>
+            </div>
+            <div class="ranking-item">
+                <div class="ranking-num">5</div>
+                <div class="ranking-content">
+                    <h4>Oferta direta</h4>
+                    <p>Funciona para remarketing (quem já te conhece), não para público frio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════ 5. GOOGLE MEU NEGOCIO ══════ -->
+    <section class="section bg-white" style="padding-top:60px; padding-bottom:60px;">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 5</span>
+            <h2>Google Meu Negócio — Grátis e Essencial</h2>
+        </div>
+
+        <div class="gmn-card">
+            <div class="gmn-stats">
+                <div class="gmn-stat">
+                    <div class="num">97%</div>
+                    <div class="label">dos brasileiros usam Google para encontrar serviços locais</div>
+                </div>
+                <div class="gmn-stat">
+                    <div class="num">76%</div>
+                    <div class="label">das buscas "perto de mim" resultam em visita em 24h</div>
+                </div>
+                <div class="gmn-stat">
+                    <div class="num">70%</div>
+                    <div class="label">mais visibilidade no Google Maps com perfil completo</div>
+                </div>
+                <div class="gmn-stat">
+                    <div class="num">3x</div>
+                    <div class="label">ROI de SEO local excede anúncios pagos</div>
+                </div>
+            </div>
+
+            <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--dark); margin-bottom:16px;">Checklist de Otimização</h3>
+
+            <ul class="checklist">
+                <li>Preencher 100% do perfil</li>
+                <li>Adicionar fotos semanalmente</li>
+                <li>Pedir avaliação para cada paciente satisfeita</li>
+                <li>Responder TODAS as avaliações</li>
+                <li>Usar palavras-chave: "harmonização facial Campinas", "botox Taquaral"</li>
+                <li>Resultado: 3 a 6 meses de consistência</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════ 6. PROGRAMA DE INDICACAO ══════ -->
+    <section class="section">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 6</span>
+            <h2>Programa de Indicação</h2>
+        </div>
+
+        <div class="indicacao-grid">
+            <div class="indicacao-card">
+                <h3>Para quem indica</h3>
+                <ul>
+                    <li>15% OFF no próximo procedimento</li>
+                    <li>3 indicações = 1 limpeza de pele grátis</li>
+                    <li>5 indicações = upgrade de procedimento</li>
+                </ul>
+            </div>
+            <div class="indicacao-card">
+                <h3>Para o novo cliente (indicado)</h3>
+                <ul>
+                    <li>10% OFF no primeiro procedimento</li>
+                    <li>Avaliação gratuita</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="frase-modelo">
+            "Indique uma amiga e ganhe 15% OFF no seu próximo procedimento. Sua amiga também ganha 10% de desconto na primeira visita!"
+        </div>
+
+        <p class="indicacao-nota">Custo de aquisição por indicação é muito menor que tráfego pago. Comunicar ativamente após cada atendimento.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════ 7. PERMUTAS COM INFLUENCIADORAS ══════ -->
+    <section class="section">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 7</span>
+            <h2>Permutas com Influenciadoras</h2>
+        </div>
+
+        <div class="permutas-main">
+            <h3>Micro-influenciadoras Locais</h3>
+            <ul>
+                <li>Micro-influenciadoras locais (1.000 a 30.000 seguidores)</li>
+                <li>Oferecer 1 procedimento em troca de: 1 Reels + 3 Stories + 1 post no feed</li>
+                <li>Custo real: apenas o insumo (R$ 100 a R$ 500)</li>
+                <li>Retorno potencial: 3 a 15 novos clientes por permuta</li>
+                <li>Buscar influenciadoras de Campinas que falem de beleza, moda e lifestyle</li>
+            </ul>
+        </div>
+
+        <div style="max-width:800px; margin:0 auto;">
+            <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--dark); margin-bottom:16px; text-align:center;">Outras Parcerias Estratégicas</h3>
+            <div class="parcerias-grid">
+                <div class="parceria-item">
+                    <div class="parceria-icon">&#128135;</div>
+                    <span>Salões de beleza (indicação cruzada)</span>
+                </div>
+                <div class="parceria-item">
+                    <div class="parceria-icon">&#127947;</div>
+                    <span>Academias e studios de pilates</span>
+                </div>
+                <div class="parceria-item">
+                    <div class="parceria-icon">&#128091;</div>
+                    <span>Lojas de roupas femininas</span>
+                </div>
+                <div class="parceria-item">
+                    <div class="parceria-icon">&#127822;</div>
+                    <span>Nutricionistas e personal trainers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════ 8. PLANO DE ACAO — 30 DIAS ══════ -->
+    <section class="section">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 8</span>
+            <h2>Plano de Ação — Primeiros 30 Dias</h2>
+        </div>
+
+        <div class="timeline">
+            <!-- Semana 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-badge badge-gratis">GRÁTIS</span>
+                    <h4>Semana 1 — Base</h4>
+                    <ul>
+                        <li>Criar/otimizar Google Meu Negócio</li>
+                        <li>Começar a postar Reels 3-4x/semana</li>
+                        <li>Criar conta no TikTok e postar 3 vídeos</li>
+                        <li>Implementar programa de indicação</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Semana 2 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-badge badge-baixo">BAIXO CUSTO</span>
+                    <h4>Semana 2 — Parcerias</h4>
+                    <ul>
+                        <li>Identificar 5 micro-influenciadoras de Campinas</li>
+                        <li>Contatar 3 para propor permuta</li>
+                        <li>Buscar 2 parcerias locais (salão, academia)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Semana 3 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-badge badge-pago">R$ 300–600</span>
+                    <h4>Semana 3 — Tráfego Pago</h4>
+                    <ul>
+                        <li>Criar conta no Meta Ads (Gerenciador de Anúncios)</li>
+                        <li>Criar primeira campanha: vídeo antes/depois + CTA WhatsApp</li>
+                        <li>Segmentação: Mulheres, 25-55 anos, Campinas e região, interesses em estética</li>
+                        <li>Orçamento: R$ 20/dia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Semana 4 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-badge badge-otimiza">OTIMIZAÇÃO</span>
+                    <h4>Semana 4 — Otimização</h4>
+                    <ul>
+                        <li>Analisar resultados da primeira campanha</li>
+                        <li>Pausar anúncios com CPC acima de R$ 5</li>
+                        <li>Impulsionar o Reels com melhor performance orgânica (R$ 10/dia)</li>
+                        <li>Pedir avaliações no Google para todas as pacientes do mês</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════ 9. RESUMO DOS CUSTOS ══════ -->
+    <section class="section">
+        <div class="section-title">
+            <span class="section-num">SEÇÃO 9</span>
+            <h2>Resumo dos Custos</h2>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="resumo-table">
+                <thead>
+                    <tr>
+                        <th>Ação</th>
+                        <th>Custo Mensal</th>
+                        <th>Prioridade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Conteúdo orgânico (Reels/TikTok/Stories)</td>
+                        <td><span class="gratis-badge">Grátis</span></td>
+                        <td class="priority-high">&#9733;&#9733;&#9733;</td>
+                    </tr>
+                    <tr>
+                        <td>Google Meu Negócio</td>
+                        <td><span class="gratis-badge">Grátis</span></td>
+                        <td class="priority-high">&#9733;&#9733;&#9733;</td>
+                    </tr>
+                    <tr>
+                        <td>Programa de indicação</td>
+                        <td>~R$ 50–100 (descontos)</td>
+                        <td class="priority-high">&#9733;&#9733;&#9733;</td>
+                    </tr>
+                    <tr>
+                        <td>Permutas com influenciadoras</td>
+                        <td>R$ 100–500 (insumo)</td>
+                        <td class="priority-med">&#9733;&#9733;&#9734;</td>
+                    </tr>
+                    <tr>
+                        <td>Meta Ads</td>
+                        <td>R$ 300–600</td>
+                        <td class="priority-high">&#9733;&#9733;&#9733;</td>
+                    </tr>
+                    <tr>
+                        <td>Google Ads</td>
+                        <td>R$ 200+ (futuro)</td>
+                        <td class="priority-low">&#9733;&#9734;&#9734;</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL MÍNIMO</strong></td>
+                        <td><strong>~R$ 450–700/mês</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ══════ FOOTER ══════ -->
+    <footer class="footer">
+        <p>Plano elaborado para @dra.sabrinasilverio — Campinas/SP</p>
+        <p>Investimento sugerido baseado em dados de mercado 2025/2026</p>
+    </footer>
+
+</body>
+</html>
