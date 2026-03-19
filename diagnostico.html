@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico Instagram — Dra. Sabrina Silvério</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --rose: #C0908B;
+      --rose-light: #D4A9A4;
+      --rose-dark: #9B6F6A;
+      --nude: #FFF5F3;
+      --dark: #3D2B28;
+      --dark-light: #5C4440;
+      --white: #FFFFFF;
+      --green: #2ECC71;
+      --red: #E74C3C;
+      --yellow: #F39C12;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background: var(--nude);
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(170deg, var(--dark) 0%, #1F1412 100%);
+      padding: 60px 24px 50px;
+      text-align: center;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 5vw, 36px);
+      color: var(--rose-light);
+      margin-bottom: 8px;
+    }
+    .header p {
+      font-size: 13px;
+      color: #8B7572;
+      letter-spacing: 2px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* Resumo cards */
+    .score {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .score-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 600;
+      color: var(--yellow);
+    }
+    .score-label {
+      font-size: 13px;
+      color: var(--dark-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .score-desc {
+      font-size: 14px;
+      color: var(--dark-light);
+      margin-top: 8px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .metric {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .metric-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .metric-label {
+      font-size: 11px;
+      color: var(--dark-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .metric-status {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 8px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    .status-red { background: #FDEDEC; color: var(--red); }
+    .status-yellow { background: #FEF9E7; color: var(--yellow); }
+    .status-green { background: #EAFAF1; color: var(--green); }
+
+    /* Sections */
+    .section {
+      margin-bottom: 40px;
+    }
+    .section-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+    .section p {
+      font-size: 14px;
+      color: var(--dark-light);
+      margin-bottom: 12px;
+    }
+
+    /* Alert cards */
+    .alert {
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border-left: 4px solid;
+    }
+    .alert-critical {
+      background: #FDEDEC;
+      border-color: var(--red);
+    }
+    .alert-warning {
+      background: #FEF9E7;
+      border-color: var(--yellow);
+    }
+    .alert-success {
+      background: #EAFAF1;
+      border-color: var(--green);
+    }
+    .alert h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+    .alert p {
+      font-size: 13px;
+      color: var(--dark-light);
+      margin-bottom: 8px;
+    }
+    .alert .steps {
+      font-size: 13px;
+      color: var(--dark);
+      background: rgba(255,255,255,0.6);
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+    .alert .steps strong {
+      color: var(--dark);
+    }
+
+    /* Bio comparison */
+    .bio-box {
+      background: var(--white);
+      padding: 20px 24px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.8;
+      border: 1px solid #eee;
+    }
+    .bio-box.current { border-left: 4px solid var(--yellow); }
+    .bio-box.suggested { border-left: 4px solid var(--green); }
+    .bio-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .bio-label.current { color: var(--yellow); }
+    .bio-label.suggested { color: var(--green); }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+    .checklist li {
+      padding: 14px 16px;
+      background: var(--white);
+      margin-bottom: 6px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .check-icon {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--rose-light);
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--rose-light);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 20px;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 24px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--rose);
+      border: 3px solid var(--nude);
+    }
+    .timeline-day {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--rose);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .timeline-task {
+      font-size: 14px;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    .timeline-time {
+      font-size: 12px;
+      color: var(--dark-light);
+      margin-top: 4px;
+    }
+
+    /* Table destaques */
+    .dest-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    .dest-table th {
+      background: var(--rose);
+      color: var(--white);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .dest-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f0e6e3;
+      background: var(--white);
+    }
+    .dest-table tr:last-child td { border-bottom: none; }
+    .tag-criar { color: var(--green); font-weight: 600; font-size: 11px; }
+    .tag-manter { color: var(--rose); font-weight: 600; font-size: 11px; }
+    .tag-reorg { color: var(--yellow); font-weight: 600; font-size: 11px; }
+
+    /* Positivos */
+    .positive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .positive-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 3px solid var(--green);
+    }
+    .positive-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .positive-card p {
+      font-size: 12px;
+      color: var(--dark-light);
+      margin: 0;
+    }
+
+    /* Discovery */
+    .discovery {
+      background: linear-gradient(135deg, var(--rose) 0%, var(--rose-dark) 100%);
+      padding: 30px;
+      border-radius: 12px;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .discovery h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .discovery p {
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .discovery ul {
+      padding-left: 20px;
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+    }
+    .discovery li { margin-bottom: 4px; }
+
+    .footer-doc {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 11px;
+      color: var(--dark-light);
+      opacity: 0.6;
+    }
+
+    @media (max-width: 480px) {
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .positive-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Diagnóstico do Instagram</h1>
+    <p>@dra.sabrinasilverio — Março 2026</p>
+  </div>
+
+  <div class="container">
+
+    <!-- NOTA GERAL -->
+    <div class="score">
+      <div class="score-number">5/10</div>
+      <div class="score-label">Nota Geral</div>
+      <div class="score-desc">Tem conteúdo bom, mas faltam configurações básicas e frequência.</div>
+    </div>
+
+    <!-- MÉTRICAS -->
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-value">1.312</div>
+        <div class="metric-label">Seguidores</div>
+        <div class="metric-status status-yellow">Crescer</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">1.352</div>
+        <div class="metric-label">Seguindo</div>
+        <div class="metric-status status-red">Reduzir</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">52</div>
+        <div class="metric-label">Posts</div>
+        <div class="metric-status status-yellow">Aumentar</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">2-4</div>
+        <div class="metric-label">Posts/Mês</div>
+        <div class="metric-status status-red">Muito baixo</div>
+      </div>
+    </div>
+
+    <!-- PROBLEMAS CRÍTICOS -->
+    <div class="section">
+      <div class="section-tag">Urgente</div>
+      <h2>Problemas Críticos</h2>
+
+      <div class="alert alert-critical">
+        <h3>1. Sem Botão de WhatsApp</h3>
+        <p>A pessoa vê o perfil, quer agendar, e não acha como falar com você facilmente. Está <strong>perdendo clientes todos os dias</strong>.</p>
+        <div class="steps">
+          <strong>Como corrigir (5 min):</strong><br>
+          Instagram → Editar perfil → Opções de contato → Adicionar WhatsApp: <strong>(19) 99356-7353</strong> → Salvar
+        </div>
+      </div>
+
+      <div class="alert alert-critical">
+        <h3>2. Sem Categoria Profissional</h3>
+        <p>Não aparece "Esteticista" abaixo do nome. Perde credibilidade e aparece menos nas buscas.</p>
+        <div class="steps">
+          <strong>Como corrigir (2 min):</strong><br>
+          Instagram → Editar perfil → Categoria → Selecionar <strong>"Esteticista"</strong> ou <strong>"Saúde/Beleza"</strong> → Marcar "Exibir no perfil"
+        </div>
+      </div>
+
+      <div class="alert alert-warning">
+        <h3>3. Seguindo mais do que Seguidores</h3>
+        <p>1.352 seguindo vs 1.312 seguidores. Profissionais devem seguir <strong>menos</strong> do que têm de seguidores.</p>
+        <div class="steps">
+          <strong>Meta:</strong> Reduzir para ~500-700 seguindo<br>
+          <strong>Como:</strong> Deixar de seguir aos poucos (50-100 por semana)
+        </div>
+      </div>
+    </div>
+
+    <!-- BIO -->
+    <div class="section">
+      <div class="section-tag">Melhoria</div>
+      <h2>Bio do Instagram</h2>
+      <p>Sua bio está boa, mas pode ficar melhor adicionando os procedimentos (melhora o SEO) e um CTA mais direto.</p>
+
+      <div class="bio-box current">
+        <div class="bio-label current">Atual</div>
+        Especialista em Harmonização Facial 💉✨<br>
+        Profª Pós-Graduação @egacademy.br<br>
+        Campinas | São José do Rio Pardo📍<br>
+        ✨Sua transformação começa aqui ⤵️
+      </div>
+
+      <div class="bio-box suggested">
+        <div class="bio-label suggested">Sugerida</div>
+        Especialista em Harmonização Facial 💉<br>
+        Profª Pós-Graduação @egacademy.br<br>
+        ✨ Botox · Preenchimento · Bioestimulador<br>
+        📍 Taquaral, Campinas | S.J. Rio Pardo<br>
+        📲 Agende sua avaliação ↓
+      </div>
+
+      <p style="font-size: 12px; color: var(--green);">✅ Mantém a credencial de professora · Adiciona procedimentos (SEO) · Especifica bairro · CTA direto</p>
+    </div>
+
+    <!-- LINK NA BIO -->
+    <div class="section">
+      <div class="section-tag">Melhoria</div>
+      <h2>Link na Bio</h2>
+      <div class="alert alert-warning">
+        <h3>Trocar Linktree pela Landing Page</h3>
+        <p><strong>Atual:</strong> linktr.ee/drasabrinasilverio — genérico e sem identidade visual.</p>
+        <p><strong>Sugestão:</strong> Usar a landing page personalizada que já está no ar com sua identidade visual, todos os procedimentos, WhatsApp e mapa.</p>
+        <div class="steps">
+          <strong>Link pronto:</strong> obiwandre.github.io/dra-sabrina-silverio
+        </div>
+      </div>
+    </div>
+
+    <!-- DESTAQUES -->
+    <div class="section">
+      <div class="section-tag">Melhoria</div>
+      <h2>Destaques do Stories</h2>
+      <p>Seus 5 destaques atuais são todos sobre procedimentos. Faltam categorias essenciais para conversão.</p>
+
+      <table class="dest-table">
+        <tr><th>#</th><th>Nome</th><th>Conteúdo</th><th>Ação</th></tr>
+        <tr><td>1</td><td>✨ Resultados</td><td>Antes & depois de todos os procedimentos</td><td><span class="tag-criar">CRIAR</span></td></tr>
+        <tr><td>2</td><td>💬 Depoimentos</td><td>Prints de feedbacks de clientes</td><td><span class="tag-criar">CRIAR</span></td></tr>
+        <tr><td>3</td><td>💉 Procedimentos</td><td>Juntar Labial + Rino + US Micro + Botox</td><td><span class="tag-reorg">REORGANIZAR</span></td></tr>
+        <tr><td>4</td><td>🔬 Laser Lavieen</td><td>Manter (é diferencial)</td><td><span class="tag-manter">MANTER</span></td></tr>
+        <tr><td>5</td><td>🧖‍♀️ Skin Care</td><td>Manter</td><td><span class="tag-manter">MANTER</span></td></tr>
+        <tr><td>6</td><td>👩‍⚕️ Sobre Mim</td><td>Formação, bastidores, dia a dia</td><td><span class="tag-criar">CRIAR</span></td></tr>
+        <tr><td>7</td><td>📍 Local</td><td>Consultório, endereço, como chegar</td><td><span class="tag-criar">CRIAR</span></td></tr>
+        <tr><td>8</td><td>❓ FAQ</td><td>Dúvidas frequentes (dói? quanto dura?)</td><td><span class="tag-criar">CRIAR</span></td></tr>
+      </table>
+    </div>
+
+    <!-- FREQUÊNCIA -->
+    <div class="section">
+      <div class="section-tag">Melhoria</div>
+      <h2>Frequência de Postagem</h2>
+      <div class="alert alert-warning">
+        <h3>Precisa triplicar</h3>
+        <p><strong>Atual:</strong> 2-4 posts por mês</p>
+        <p><strong>Ideal:</strong> 3-4 posts por semana (12-16/mês)</p>
+        <p>O algoritmo do Instagram favorece quem posta com consistência. Com 2-4 posts/mês, o perfil quase não aparece no explore.</p>
+        <div class="steps">
+          <strong>Calendário sugerido:</strong><br>
+          Segunda — Reels de transformação<br>
+          Terça — Carrossel educativo<br>
+          Quinta — Reels de procedimento<br>
+          Sexta — Post de resultado/depoimento<br>
+          Sábado — Reels trend
+        </div>
+      </div>
+    </div>
+
+    <!-- PONTOS POSITIVOS -->
+    <div class="section">
+      <div class="section-tag">O que está bom</div>
+      <h2>Pontos Positivos</h2>
+      <div class="positive-grid">
+        <div class="positive-card">
+          <h4>✅ Post fixado certeiro</h4>
+          <p>Resultado de preenchimento — primeira coisa que visitantes veem.</p>
+        </div>
+        <div class="positive-card">
+          <h4>✅ Usa Reels ativamente</h4>
+          <p>Reels tem 2-3x mais alcance que posts estáticos.</p>
+        </div>
+        <div class="positive-card">
+          <h4>✅ Conteúdo educativo</h4>
+          <p>Posts sobre pontos de botox geram autoridade e engajamento.</p>
+        </div>
+        <div class="positive-card">
+          <h4>✅ Credencial de professora</h4>
+          <p>Diferencial enorme — explorar mais!</p>
+        </div>
+        <div class="positive-card">
+          <h4>✅ Atende em 2+ cidades</h4>
+          <p>Amplia público — comunicar melhor as datas.</p>
+        </div>
+        <div class="positive-card">
+          <h4>✅ Nome otimizado</h4>
+          <p>"Harmonização Facial Campinas" — ótimo para SEO.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESCOBERTAS -->
+    <div class="section">
+      <div class="section-tag">Insights</div>
+      <h2>Descobertas Importantes</h2>
+
+      <div class="discovery">
+        <h3>Você é Professora!</h3>
+        <p>Ser Professora de Pós-Graduação na @egacademy.br é um diferencial ENORME. Clientes pagam mais e confiam mais em quem ensina.</p>
+        <ul>
+          <li>Posts: "Como professora, uma das perguntas que mais recebo é..."</li>
+          <li>Reels: "O que eu ensino pros meus alunos sobre Botox"</li>
+          <li>Stories: Mostrar bastidores das aulas</li>
+        </ul>
+      </div>
+
+      <div class="discovery">
+        <h3>Atende em Múltiplas Cidades</h3>
+        <p>Campinas, São José do Rio Pardo e Poços de Caldas. Comunicar melhor as datas!</p>
+        <ul>
+          <li>"Agenda aberta em Campinas! Dias X e Y"</li>
+          <li>"Próxima data em S.J. do Rio Pardo: dia X"</li>
+          <li>Usar hashtags de cada cidade separadamente</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="section">
+      <div class="section-tag">Verificação</div>
+      <h2>Checklist de Otimização</h2>
+      <ul class="checklist">
+        <li><div class="check-icon"></div> Conta é profissional (Business/Creator)?</li>
+        <li><div class="check-icon"></div> Categoria está como "Esteticista"?</li>
+        <li><div class="check-icon"></div> Bio tem CTA + procedimentos + localização?</li>
+        <li><div class="check-icon"></div> Link na bio está ativo (landing page)?</li>
+        <li><div class="check-icon"></div> Botão WhatsApp configurado?</li>
+        <li><div class="check-icon"></div> Foto de perfil é profissional (rosto)?</li>
+        <li><div class="check-icon"></div> Tem pelo menos 5 destaques com capas?</li>
+        <li><div class="check-icon"></div> Feed tem identidade visual consistente?</li>
+        <li><div class="check-icon"></div> Postando mínimo 3-4x por semana?</li>
+        <li><div class="check-icon"></div> Responde DMs em até 1 hora?</li>
+      </ul>
+    </div>
+
+    <!-- PLANO DE AÇÃO -->
+    <div class="section">
+      <div class="section-tag">Plano de Ação</div>
+      <h2>Próximos 7 Dias</h2>
+      <p>Total: ~3 horas de trabalho para transformar o perfil.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-day">Dia 1</div>
+          <div class="timeline-task">Configurar botão WhatsApp + categoria "Esteticista"</div>
+          <div class="timeline-time">⏱ 5 minutos</div>
+          <div class="timeline-task" style="margin-top: 8px;">Atualizar bio com versão otimizada</div>
+          <div class="timeline-time">⏱ 5 minutos</div>
+          <div class="timeline-task" style="margin-top: 8px;">Trocar link na bio para a landing page</div>
+          <div class="timeline-time">⏱ 5 minutos</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Dia 2</div>
+          <div class="timeline-task">Exportar e subir capas dos destaques</div>
+          <div class="timeline-time">⏱ 20 minutos</div>
+          <div class="timeline-task" style="margin-top: 8px;">Reorganizar destaques (criar Resultados e Depoimentos)</div>
+          <div class="timeline-time">⏱ 30 minutos</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Dia 3</div>
+          <div class="timeline-task">Postar card de Botox no feed</div>
+          <div class="timeline-time">⏱ 10 minutos</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Dia 4</div>
+          <div class="timeline-task">Postar card de Preenchimento Labial</div>
+          <div class="timeline-time">⏱ 10 minutos</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Dia 5</div>
+          <div class="timeline-task">Gravar Reels #1 — "20 minutos que mudam o seu olhar"</div>
+          <div class="timeline-time">⏱ 30 minutos</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Dia 6</div>
+          <div class="timeline-task">Postar card de Bioestimulador</div>
+          <div class="timeline-time">⏱ 10 minutos</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Dia 7</div>
+          <div class="timeline-task">Postar card de Ultrassom Microfocado</div>
+          <div class="timeline-time">⏱ 10 minutos</div>
+          <div class="timeline-task" style="margin-top: 8px;">Começar a reduzir "seguindo" (50/dia)</div>
+          <div class="timeline-time">⏱ 15 minutos</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-doc">
+    Diagnóstico feito em março/2026 para @dra.sabrinasilverio<br>
+    Baseado na análise real do perfil
+  </div>
+
+</body>
+</html>
