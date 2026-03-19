@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estratégia de Marketing Digital — Dra. Sabrina Silvério</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose: #C0908B;
+            --rose-light: #D4A9A4;
+            --rose-dark: #9B6F6A;
+            --nude: #FFF5F3;
+            --dark: #3D2B28;
+            --dark-light: #5C4440;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--nude);
+            color: var(--dark);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ======================== HEADER ======================== */
+        .hero-header {
+            background: linear-gradient(135deg, var(--rose-dark) 0%, var(--rose) 50%, var(--rose-light) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            animation: shimmer 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        .hero-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-header .subtitle {
+            font-size: 1.15rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-header .handle {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ======================== NAVIGATION ======================== */
+        .nav-bar {
+            background: var(--white);
+            border-bottom: 2px solid var(--rose-light);
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(61,43,40,0.08);
+        }
+
+        .nav-bar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav-bar a {
+            display: block;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: var(--dark-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-bar a:hover {
+            color: var(--rose-dark);
+            border-bottom-color: var(--rose);
+        }
+
+        /* ======================== SECTIONS ======================== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--dark-light);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--rose-light), var(--rose-dark));
+            margin: 0 auto 16px;
+            border-radius: 2px;
+        }
+
+        /* ======================== GOLDEN RULE ======================== */
+        .golden-rule {
+            background: linear-gradient(135deg, var(--rose-dark), var(--rose));
+            color: var(--white);
+            padding: 24px 32px;
+            border-radius: 14px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 6px 20px rgba(155,111,106,0.3);
+        }
+
+        .golden-rule strong {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .golden-rule p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        /* ======================== TABLE ======================== */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.08);
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            min-width: 700px;
+        }
+
+        thead th {
+            background: var(--rose);
+            color: var(--white);
+            padding: 16px 18px;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        thead th:first-child {
+            border-radius: 14px 0 0 0;
+        }
+
+        thead th:last-child {
+            border-radius: 0 14px 0 0;
+        }
+
+        tbody td {
+            padding: 14px 18px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(212,169,164,0.25);
+            vertical-align: top;
+        }
+
+        tbody tr:hover {
+            background: var(--nude);
+        }
+
+        tbody tr:last-child td:first-child {
+            border-radius: 0 0 0 14px;
+        }
+
+        tbody tr:last-child td:last-child {
+            border-radius: 0 0 14px 0;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: var(--nude);
+            color: var(--rose-dark);
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+        }
+
+        .format-tag {
+            display: inline-block;
+            background: var(--rose-light);
+            color: var(--white);
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+        }
+
+        /* ======================== STORIES / ROTATION CARDS ======================== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.08);
+        }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--rose-dark);
+            margin-bottom: 18px;
+        }
+
+        .story-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .story-time {
+            flex-shrink: 0;
+            background: var(--rose);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.78rem;
+            padding: 5px 10px;
+            border-radius: 8px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .story-desc {
+            font-size: 0.9rem;
+            color: var(--dark-light);
+        }
+
+        .rotation-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .week-badge {
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--rose), var(--rose-light));
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.78rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            min-width: 90px;
+            text-align: center;
+        }
+
+        /* ======================== LEGEND CARDS ======================== */
+        .legend-card {
+            background: var(--white);
+            border-radius: 14px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.08);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .legend-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(61,43,40,0.14);
+        }
+
+        .legend-header {
+            background: linear-gradient(135deg, var(--rose), var(--rose-light));
+            color: var(--white);
+            padding: 20px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .legend-header .legend-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .legend-header .legend-format {
+            background: rgba(255,255,255,0.25);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .legend-body {
+            padding: 24px 28px;
+        }
+
+        .legend-text {
+            background: var(--nude);
+            border-left: 4px solid var(--rose-light);
+            padding: 20px 24px;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--dark);
+            white-space: pre-wrap;
+            margin-bottom: 16px;
+        }
+
+        .legend-hashtags {
+            font-size: 0.8rem;
+            color: var(--rose-dark);
+            line-height: 1.9;
+            word-break: break-word;
+        }
+
+        .btn-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            background: var(--rose);
+            color: var(--white);
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-copy:hover {
+            background: var(--rose-dark);
+        }
+
+        .btn-copy svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* ======================== REELS CARDS ======================== */
+        .reel-card {
+            background: var(--white);
+            border-radius: 14px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.08);
+            overflow: hidden;
+        }
+
+        .reel-header {
+            background: linear-gradient(135deg, var(--dark), var(--dark-light));
+            color: var(--white);
+            padding: 22px 28px;
+        }
+
+        .reel-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .reel-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .reel-meta span {
+            font-size: 0.82rem;
+            opacity: 0.85;
+        }
+
+        .reel-meta strong {
+            opacity: 1;
+        }
+
+        .reel-body {
+            padding: 24px 28px;
+        }
+
+        .reel-table {
+            min-width: 500px;
+        }
+
+        .reel-table thead th {
+            background: var(--rose-light);
+            font-size: 0.8rem;
+            padding: 12px 14px;
+        }
+
+        .reel-table thead th:first-child {
+            border-radius: 10px 0 0 0;
+        }
+
+        .reel-table thead th:last-child {
+            border-radius: 0 10px 0 0;
+        }
+
+        .reel-table tbody td {
+            padding: 12px 14px;
+            font-size: 0.85rem;
+        }
+
+        .reel-caption {
+            background: var(--nude);
+            border-left: 4px solid var(--rose);
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 16px;
+        }
+
+        .reel-caption strong {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--rose-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .reel-caption p {
+            font-size: 0.9rem;
+            color: var(--dark-light);
+        }
+
+        /* ======================== HASHTAG SECTION ======================== */
+        .hashtag-group {
+            background: var(--white);
+            border-radius: 14px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.08);
+            overflow: hidden;
+        }
+
+        .hashtag-group.group-1 .hashtag-group-header { background: linear-gradient(135deg, var(--rose-dark), var(--rose)); }
+        .hashtag-group.group-2 .hashtag-group-header { background: linear-gradient(135deg, #8BA08C, #A4BFA5); }
+        .hashtag-group.group-3 .hashtag-group-header { background: linear-gradient(135deg, var(--dark), var(--dark-light)); }
+
+        .hashtag-group-header {
+            color: var(--white);
+            padding: 20px 28px;
+        }
+
+        .hashtag-group-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            margin-bottom: 4px;
+        }
+
+        .hashtag-group-header p {
+            font-size: 0.82rem;
+            opacity: 0.85;
+        }
+
+        .hashtag-group-body {
+            padding: 24px 28px;
+        }
+
+        .hashtag-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .hashtag-tag {
+            background: var(--nude);
+            color: var(--rose-dark);
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(192,144,139,0.2);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .hashtag-tag:hover {
+            background: var(--rose);
+            color: var(--white);
+        }
+
+        /* ======================== TIPS ======================== */
+        .tips-box {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 20px rgba(61,43,40,0.08);
+        }
+
+        .tips-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--rose-dark);
+            margin-bottom: 16px;
+        }
+
+        .tips-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips-box li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--dark-light);
+        }
+
+        .tips-box li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--rose);
+            font-size: 0.75rem;
+        }
+
+        /* ======================== WEEKLY SUMMARY ======================== */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .summary-item {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 18px 14px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(61,43,40,0.06);
+            border-top: 3px solid var(--rose);
+        }
+
+        .summary-item .day-name {
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--rose-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .summary-item .day-task {
+            font-size: 0.82rem;
+            color: var(--dark-light);
+        }
+
+        /* ======================== FOOTER ======================== */
+        .page-footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .page-footer strong {
+            color: var(--rose-light);
+        }
+
+        /* ======================== RESPONSIVE ======================== */
+        @media (max-width: 768px) {
+            .hero-header { padding: 50px 16px 40px; }
+            .hero-header h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.5rem; }
+            .info-grid { grid-template-columns: 1fr; gap: 20px; }
+            .nav-bar a { padding: 10px 12px; font-size: 0.75rem; }
+            .legend-header { padding: 16px 20px; }
+            .legend-body { padding: 18px 20px; }
+            .legend-text { padding: 16px 18px; }
+            .reel-header { padding: 16px 20px; }
+            .reel-body { padding: 18px 20px; }
+            .summary-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+        }
+
+        @media (max-width: 480px) {
+            .hero-header h1 { font-size: 1.5rem; }
+            .nav-bar ul { gap: 2px; }
+            .nav-bar a { padding: 8px 8px; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ======================== HEADER ======================== -->
+<header class="hero-header">
+    <h1>Estratégia de Marketing Digital</h1>
+    <p class="subtitle">Dra. Sabrina Silvério</p>
+    <p class="handle">@dra.sabrinasilverio</p>
+</header>
+
+<!-- ======================== NAVIGATION ======================== -->
+<nav class="nav-bar">
+    <ul>
+        <li><a href="#calendario">Calendário</a></li>
+        <li><a href="#legendas">Legendas</a></li>
+        <li><a href="#roteiros">Roteiros</a></li>
+        <li><a href="#hashtags">Hashtags</a></li>
+    </ul>
+</nav>
+
+<!-- ================================================================
+     SEÇÃO 1: CALENDÁRIO DE CONTEÚDO SEMANAL
+     ================================================================ -->
+<section id="calendario">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Calendário de Conteúdo Semanal</h2>
+        <p class="section-subtitle">Planejamento estratégico para o Instagram da Dra. Sabrina Silvério</p>
+
+        <!-- Regra de Ouro -->
+        <div class="golden-rule">
+            <strong>Regra de Ouro</strong>
+            <p>Nunca divulgar preços nos posts. Sempre direcionar para DM ou WhatsApp.</p>
+        </div>
+
+        <!-- Tabela Semanal -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Formato</th>
+                        <th>Tema</th>
+                        <th>Procedimento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="day-badge">Segunda</span></td>
+                        <td><span class="format-tag">Reels (15-30s)</span></td>
+                        <td>Antes &amp; Depois / Transformação</td>
+                        <td>Botox ou Preenchimento Labial</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">Terça</span></td>
+                        <td><span class="format-tag">Carrossel Feed (5-7 slides)</span></td>
+                        <td>Educativo — "Você sabia?" / Mitos e Verdades</td>
+                        <td>Bioestimulador</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">Quarta</span></td>
+                        <td><span class="format-tag">Stories (sequência 5-8 stories)</span></td>
+                        <td>Bastidores do consultório + Caixinha de perguntas</td>
+                        <td>Limpeza de Pele / Skincare</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">Quinta</span></td>
+                        <td><span class="format-tag">Reels (15-30s)</span></td>
+                        <td>Procedimento em tempo real (timelapse)</td>
+                        <td>Ultrassom Microfocado</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">Sexta</span></td>
+                        <td><span class="format-tag">Feed — Imagem única</span></td>
+                        <td>Depoimento de paciente / Resultado</td>
+                        <td>Rinomodelação</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">Sábado</span></td>
+                        <td><span class="format-tag">Reels (15-30s)</span></td>
+                        <td>Dica rápida / Trend do momento</td>
+                        <td>Preenchimento Labial</td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">Domingo</span></td>
+                        <td><span class="format-tag">Stories (sequência leve)</span></td>
+                        <td>Lifestyle + humanização (rotina, motivação)</td>
+                        <td>Sem procedimento específico</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Stories Diários + Rotação Mensal -->
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Stories Diários — 4 Momentos</h3>
+                <div class="story-item">
+                    <span class="story-time">8h – 9h</span>
+                    <span class="story-desc">Bom dia + frase motivacional</span>
+                </div>
+                <div class="story-item">
+                    <span class="story-time">12h – 13h</span>
+                    <span class="story-desc">Bastidores / chegada ao consultório</span>
+                </div>
+                <div class="story-item">
+                    <span class="story-time">17h – 18h</span>
+                    <span class="story-desc">Resultado do dia ou caixinha</span>
+                </div>
+                <div class="story-item">
+                    <span class="story-time">20h – 21h</span>
+                    <span class="story-desc">Interação (enquete, quiz)</span>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>Rotação Mensal de Procedimentos</h3>
+                <div class="rotation-item">
+                    <span class="week-badge">Semana 1</span>
+                    <span>Botox + Limpeza de Pele</span>
+                </div>
+                <div class="rotation-item">
+                    <span class="week-badge">Semana 2</span>
+                    <span>Bioestimulador + Preenchimento Labial</span>
+                </div>
+                <div class="rotation-item">
+                    <span class="week-badge">Semana 3</span>
+                    <span>Ultrassom Microfocado + Rinomodelação</span>
+                </div>
+                <div class="rotation-item">
+                    <span class="week-badge">Semana 4</span>
+                    <span>Preenchimento Labial + Botox</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     SEÇÃO 2: 10 LEGENDAS PRONTAS
+     ================================================================ -->
+<section id="legendas" style="background: rgba(212,169,164,0.08);">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">10 Legendas Prontas</h2>
+        <p class="section-subtitle">Copie e cole — prontas para publicar no Instagram</p>
+
+        <!-- Legenda 1 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">1. Botox</span>
+                <span class="legend-format">Reels / Feed</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">Expressão leve. Olhar descansado. Naturalidade que só quem entende de harmonização consegue entregar.
+
+O Botox é um dos procedimentos mais procurados no meu consultório — e não é por acaso.
+
+Em poucos minutos, suavizamos linhas de expressão e devolvemos aquele ar de "pele descansada" que todo mundo pergunta o segredo.
+
+Resultado natural. Sem exageros. Respeitando a sua anatomia e a sua identidade.
+
+Quer saber se o Botox é indicado para você? Manda um "QUERO" aqui no DM que eu te explico tudo.</div>
+                <div class="legend-hashtags">#botox #toxinabotulinica #harmonizacaofacial #esteticaavancada #botoxcampinas #rejuvenescimentofacial #peledescansada #belezanatural #drasabrinasilverio #esteticacampinas #taquaral #procedimentoestetico</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 2 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">2. Bioestimulador de Colágeno</span>
+                <span class="legend-format">Carrossel Feed</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">Você sabia que depois dos 25 anos perdemos cerca de 1% de colágeno por ano?
+
+O Bioestimulador de Colágeno é a resposta para quem quer tratar a CAUSA do envelhecimento, e não só os sintomas.
+
+Como funciona:
+- Estimula a produção NATURAL de colágeno
+- Melhora firmeza, textura e sustentação da pele
+- Resultado progressivo e duradouro (até 2 anos!)
+
+Não é preenchimento. É a sua própria pele se reconstruindo.
+
+Existem diferentes tipos de bioestimuladores — na sua avaliação, vou indicar o ideal para o seu caso.
+
+Agenda aberta! Manda uma mensagem no DM ou clique no link da bio para agendar.</div>
+                <div class="legend-hashtags">#bioestimuladordecolageno #colageno #firmezadapele #rejuvenescimento #esteticaavancada #harmonizacaofacial #bioestimulador #pelejovem #tratamentofacial #campinassp #drasabrinasilverio #esteticacampinas</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 3 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">3. Ultrassom Microfocado</span>
+                <span class="legend-format">Reels / Carrossel</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">Lifting sem cirurgia? Existe — e chama Ultrassom Microfocado.
+
+Esse é um dos procedimentos que mais surpreendem minhas pacientes. Utilizando energia ultrassônica de alta precisão, conseguimos:
+
+- Efeito lifting imediato
+- Estímulo profundo de colágeno
+- Melhora da flacidez facial e do contorno do rosto
+- Resultado que evolui ao longo dos meses.
+
+Sem cortes. Sem agulhas. Sem tempo de recuperação.
+
+Ideal para quem quer um rosto mais firme e definido com total naturalidade.
+
+Quer saber mais? Me chama no DM com a palavra "ULTRASSOM" que eu te envio todas as informações.</div>
+                <div class="legend-hashtags">#ultrassommicrofocado #liftingsemcirurgia #flacidezfacial #colageno #firmeza #esteticaavancada #rejuvenescimentofacial #procedimentoestetico #campinas #taquaral #drasabrinasilverio</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 4 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">4. Preenchimento Labial</span>
+                <span class="legend-format">Reels / Feed</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">Lábios com mais volume, definição e hidratação — tudo com um único procedimento.
+
+O Preenchimento Labial com ácido hialurônico é perfeito para quem deseja:
+
+- Mais volume (de forma sutil ou marcante — você escolhe!)
+- Contorno labial mais definido
+- Correção de assimetrias
+- Lábios mais hidratados e com aspecto saudável.
+
+Cada boca é única, e é por isso que a avaliação individualizada faz toda a diferença. Aqui, o resultado é pensado para VOCÊ.
+
+Quer lábios dos sonhos? Manda "LÁBIOS" no meu DM e vamos conversar sobre o seu caso.</div>
+                <div class="legend-hashtags">#preenchimentolabial #labios #acidohialuronico #lipfiller #harmonizacaofacial #belezanatural #volumelabial #esteticafacial #campinassp #drasabrinasilverio #esteticacampinas</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 5 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">5. Rinomodelação</span>
+                <span class="legend-format">Feed — Imagem única</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">Corrigir imperfeições no nariz sem precisar de cirurgia? Com a Rinomodelação isso é totalmente possível.
+
+Usando ácido hialurônico de forma estratégica, conseguimos:
+
+- Suavizar irregularidades no dorso nasal
+- Levantar a ponta do nariz
+- Corrigir pequenas assimetrias
+- Afinar visualmente o nariz.
+
+O procedimento é rápido (cerca de 40 minutos), com resultado imediato e sem necessidade de afastamento das atividades.
+
+A mudança é sutil, mas o impacto na autoestima é enorme.
+
+Ficou curiosa? Me chama no DM que eu tiro todas as suas dúvidas.</div>
+                <div class="legend-hashtags">#rinomodelacao #narizperfeito #acidohialuronico #harmonizacaofacial #rinomodelacaocampinas #esteticafacial #procedimentoestetico #semcirurgia #resultadonatural #drasabrinasilverio #campinas</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 6 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">6. Limpeza de Pele</span>
+                <span class="legend-format">Carrossel Feed</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">A base de qualquer tratamento estético? Uma pele limpa e bem cuidada.
+
+A Limpeza de Pele Profissional vai muito além do que você faz em casa. No meu consultório, o protocolo inclui:
+
+- Higienização profunda
+- Esfoliação adequada ao seu tipo de pele
+- Extração de cravos e miliuns
+- Máscara calmante e hidratante
+- Proteção solar finalizada.
+
+É o cuidado essencial para manter a pele saudável, prevenir acne e preparar o rosto para absorver melhor seus cosméticos.
+
+Indicada para TODOS os tipos de pele!
+
+Quer agendar a sua? Manda "LIMPEZA" no DM. Horários limitados por semana!</div>
+                <div class="legend-hashtags">#limpezadepele #skincare #pelelimpa #cuidadoscomapele #esteticafacial #pelesaudavel #acne #cravos #rotinaskincare #esteticacampinas #taquaral #drasabrinasilverio</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 7 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">7. Botox (Emocional)</span>
+                <span class="legend-format">Reels / Feed</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">"Eu não quero ficar com cara de plástica."
+
+Essa é a frase que mais escuto no consultório.
+
+E sabe o que eu respondo? EU TAMBÉM NÃO QUERO ISSO PRA VOCÊ.
+
+Meu trabalho com Botox é feito para que as pessoas olhem pra você e digam "nossa, você tá com a pele ótima!" — e não "você fez algo no rosto".
+
+Menos é mais. Naturalidade é o meu compromisso.
+
+Se você sempre quis, mas tinha medo do resultado artificial... vem conversar comigo. Manda um DM ou clique no link da bio.
+
+Você merece se olhar no espelho e se sentir incrível.</div>
+                <div class="legend-hashtags">#botoxnatural #toxinabotulinica #harmonizacaonatural #menosemais #rejuvenescimento #esteticacomresponsabilidade #belezareal #autoestima #drasabrinasilverio #campinas #esteticacampinas #taquaral</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 8 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">8. Bioestimulador (Hidroxiapatita)</span>
+                <span class="legend-format">Carrossel Feed</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">Flacidez te incomoda? Vamos falar sobre isso.
+
+A perda de colágeno é um processo natural, mas não significa que você precisa aceitar de braços cruzados.
+
+O Bioestimulador à base de Hidroxiapatita de Cálcio é um dos tratamentos mais eficazes para:
+
+- Repor colágeno perdido
+- Melhorar a firmeza da pele
+- Redefinir o contorno facial
+- Tratar flacidez em rosto, pescoço e corpo.
+
+O melhor? O resultado é SEU. É a sua pele produzindo colágeno novo. Progressivo. Natural. Duradouro.
+
+Agenda disponível para avaliação! Me chama no DM e vamos montar o melhor plano para a sua pele.</div>
+                <div class="legend-hashtags">#bioestimulador #hidroxiapatitadecalcio #colageno #firmeza #flacidez #rejuvenescimentofacial #esteticaavancada #harmonizacaofacial #pelejovem #drasabrinasilverio #campinas #taquaral</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 9 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">9. Ultrassom Microfocado (Resultado)</span>
+                <span class="legend-format">Feed — Antes e Depois</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">O resultado fala por si.
+
+Essa paciente buscou o Ultrassom Microfocado para tratar flacidez leve e melhorar o contorno facial.
+
+Em uma única sessão, já é possível notar:
+
+- Pele mais firme
+- Contorno mandibular mais definido
+- Aspecto geral rejuvenescido.
+
+E o resultado continua melhorando por até 6 meses, conforme o colágeno novo vai sendo produzido.
+
+Sem cirurgia. Sem injeções. Sem pausa nas atividades.
+
+Esse pode ser o seu próximo resultado. Me chama no DM para saber mais sobre o protocolo completo.
+
+(Imagem publicada com autorização da paciente)</div>
+                <div class="legend-hashtags">#ultrassommicrofocado #resultadoreal #antesedepois #liftingsemcirurgia #colageno #rejuvenescimento #esteticaavancada #campinas #drasabrinasilverio</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+        <!-- Legenda 10 -->
+        <div class="legend-card">
+            <div class="legend-header">
+                <span class="legend-number">10. Preenchimento Labial (Mitos)</span>
+                <span class="legend-format">Carrossel Feed</span>
+            </div>
+            <div class="legend-body">
+                <div class="legend-text">MITOS E VERDADES sobre Preenchimento Labial:
+
+"Fica artificial" — MITO! Quando feito por profissional qualificado, com técnica e produto adequados, o resultado é harmônico e natural.
+
+"Dói muito" — MITO! Utilizamos anestesia tópica e o próprio produto contém lidocaína. O desconforto é mínimo.
+
+"Dura pra sempre" — MITO! O ácido hialurônico é absorvido naturalmente pelo organismo. A duração média é de 8 a 12 meses.
+
+"Melhora a autoestima" — VERDADE! Quando você se sente bem com o que vê no espelho, tudo muda.
+
+Quer tirar mais dúvidas? Me manda um DM! Vou adorar te atender.</div>
+                <div class="legend-hashtags">#preenchimentolabial #mitoseverdades #acidohialuronico #labios #lipfiller #harmonizacaofacial #esteticasegura #drasabrinasilverio #campinas #esteticacampinas</div>
+                <button class="btn-copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================================================================
+     SEÇÃO 3: 5 ROTEIROS DE REELS
+     ================================================================ -->
+<section id="roteiros">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">5 Roteiros de Reels</h2>
+        <p class="section-subtitle">Roteiros prontos com cenas, textos na tela e legendas sugeridas</p>
+
+        <!-- Roteiro 1 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <h3>1. "O que o Botox faz em 20 minutos"</h3>
+                <div class="reel-meta">
+                    <span><strong>Duração:</strong> 20 segundos</span>
+                    <span><strong>Áudio:</strong> Música trending calma</span>
+                </div>
+            </div>
+            <div class="reel-body">
+                <div class="table-wrapper">
+                    <table class="reel-table">
+                        <thead>
+                            <tr>
+                                <th>Tempo</th>
+                                <th>Cena</th>
+                                <th>Texto na Tela</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0-3s</td>
+                                <td>Dra. Sabrina olhando para câmera, sorrindo</td>
+                                <td>"20 minutos que mudam o seu olhar"</td>
+                            </tr>
+                            <tr>
+                                <td>3-8s</td>
+                                <td>Close das mãos preparando o material</td>
+                                <td>"Procedimento rápido"</td>
+                            </tr>
+                            <tr>
+                                <td>8-13s</td>
+                                <td>Aplicação (ângulo que não mostra agulha)</td>
+                                <td>"Sem dor. Sem pausa."</td>
+                            </tr>
+                            <tr>
+                                <td>13-18s</td>
+                                <td>Paciente sorrindo para o espelho</td>
+                                <td>"Resultado natural que você merecia"</td>
+                            </tr>
+                            <tr>
+                                <td>18-20s</td>
+                                <td>Tela com logo/@</td>
+                                <td>"Agende sua avaliação — link na bio"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="reel-caption">
+                    <strong>Legenda sugerida</strong>
+                    <p>20 minutos. Zero tempo de recuperação. Resultado que você vai amar. Manda DM!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roteiro 2 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <h3>2. "Antes e Depois Preenchimento Labial"</h3>
+                <div class="reel-meta">
+                    <span><strong>Duração:</strong> 15 segundos</span>
+                    <span><strong>Áudio:</strong> Áudio com transição dramática</span>
+                </div>
+            </div>
+            <div class="reel-body">
+                <div class="table-wrapper">
+                    <table class="reel-table">
+                        <thead>
+                            <tr>
+                                <th>Tempo</th>
+                                <th>Cena</th>
+                                <th>Texto na Tela</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0-3s</td>
+                                <td>Close dos lábios ANTES</td>
+                                <td>"Antes"</td>
+                            </tr>
+                            <tr>
+                                <td>3-5s</td>
+                                <td>Transição rápida</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>5-10s</td>
+                                <td>Close dos lábios DEPOIS</td>
+                                <td>"Depois — mesmo dia!"</td>
+                            </tr>
+                            <tr>
+                                <td>10-15s</td>
+                                <td>Dra. Sabrina falando para câmera</td>
+                                <td>"Natural como tem que ser. Quer saber mais? Me chama no DM!"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="reel-caption">
+                    <strong>Legenda sugerida</strong>
+                    <p>A diferença que um preenchimento BEM FEITO faz. Resultado imediato, natural e lindo. DM aberto!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roteiro 3 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <h3>3. "3 sinais de que você precisa de um Bioestimulador"</h3>
+                <div class="reel-meta">
+                    <span><strong>Duração:</strong> 25 segundos</span>
+                    <span><strong>Áudio:</strong> Áudio com contagem</span>
+                </div>
+            </div>
+            <div class="reel-body">
+                <div class="table-wrapper">
+                    <table class="reel-table">
+                        <thead>
+                            <tr>
+                                <th>Tempo</th>
+                                <th>Cena</th>
+                                <th>Texto na Tela</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0-3s</td>
+                                <td>Dra. Sabrina com expressão de "atenção"</td>
+                                <td>"3 sinais de que sua pele precisa de colágeno"</td>
+                            </tr>
+                            <tr>
+                                <td>3-9s</td>
+                                <td>Apontando para o rosto (região mandibular)</td>
+                                <td>"1. Perda de contorno facial"</td>
+                            </tr>
+                            <tr>
+                                <td>9-15s</td>
+                                <td>Mostrando região das bochechas</td>
+                                <td>"2. Pele com aspecto 'caído' ou cansado"</td>
+                            </tr>
+                            <tr>
+                                <td>15-21s</td>
+                                <td>Apontando linhas de marionete</td>
+                                <td>"3. Sulcos e linhas cada vez mais marcados"</td>
+                            </tr>
+                            <tr>
+                                <td>21-25s</td>
+                                <td>Dra. Sabrina sorrindo</td>
+                                <td>"Bioestimulador resolve! Agenda aberta — link na bio"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="reel-caption">
+                    <strong>Legenda sugerida</strong>
+                    <p>Se você se identificou com algum desses sinais, o Bioestimulador de Colágeno pode ser o tratamento ideal. Me chama no DM!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roteiro 4 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <h3>4. "Um dia no meu consultório"</h3>
+                <div class="reel-meta">
+                    <span><strong>Duração:</strong> 30 segundos</span>
+                    <span><strong>Áudio:</strong> Música "Day in my life"</span>
+                </div>
+            </div>
+            <div class="reel-body">
+                <div class="table-wrapper">
+                    <table class="reel-table">
+                        <thead>
+                            <tr>
+                                <th>Tempo</th>
+                                <th>Cena</th>
+                                <th>Texto na Tela</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0-4s</td>
+                                <td>Chegando ao consultório, abrindo a porta</td>
+                                <td>"Bom dia! Vem comigo?"</td>
+                            </tr>
+                            <tr>
+                                <td>4-9s</td>
+                                <td>Organizando sala, preparando materiais</td>
+                                <td>"Preparando tudo com carinho"</td>
+                            </tr>
+                            <tr>
+                                <td>9-14s</td>
+                                <td>Recebendo paciente</td>
+                                <td>"Cada paciente é única"</td>
+                            </tr>
+                            <tr>
+                                <td>14-20s</td>
+                                <td>Timelapse de procedimento</td>
+                                <td>"Dedicação em cada detalhe"</td>
+                            </tr>
+                            <tr>
+                                <td>20-25s</td>
+                                <td>Paciente saindo feliz</td>
+                                <td>"Essa alegria é minha motivação"</td>
+                            </tr>
+                            <tr>
+                                <td>25-30s</td>
+                                <td>Dra. Sabrina acenando na porta</td>
+                                <td>"Te espero aqui no Taquaral! Agenda no link da bio"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="reel-caption">
+                    <strong>Legenda sugerida</strong>
+                    <p>Mais do que procedimentos, entrego cuidado e confiança. Vem conhecer meu espaço no Taquaral, Campinas!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roteiro 5 -->
+        <div class="reel-card">
+            <div class="reel-header">
+                <h3>5. "Limpeza de Pele: o que REALMENTE acontece"</h3>
+                <div class="reel-meta">
+                    <span><strong>Duração:</strong> 25 segundos</span>
+                    <span><strong>Áudio:</strong> ASMR / "Get Ready With Me"</span>
+                </div>
+            </div>
+            <div class="reel-body">
+                <div class="table-wrapper">
+                    <table class="reel-table">
+                        <thead>
+                            <tr>
+                                <th>Tempo</th>
+                                <th>Cena</th>
+                                <th>Texto na Tela</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0-4s</td>
+                                <td>Aplicação do produto de higienização</td>
+                                <td>"Etapa 1: Higienização profunda"</td>
+                            </tr>
+                            <tr>
+                                <td>4-9s</td>
+                                <td>Esfoliação suave</td>
+                                <td>"Etapa 2: Esfoliação"</td>
+                            </tr>
+                            <tr>
+                                <td>9-14s</td>
+                                <td>Extração (ângulo discreto)</td>
+                                <td>"Etapa 3: Extração cuidadosa"</td>
+                            </tr>
+                            <tr>
+                                <td>14-19s</td>
+                                <td>Aplicação de máscara</td>
+                                <td>"Etapa 4: Máscara calmante"</td>
+                            </tr>
+                            <tr>
+                                <td>19-25s</td>
+                                <td>Resultado final</td>
+                                <td>"Pele nova! Agende a sua — DM aberto"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="reel-caption">
+                    <strong>Legenda sugerida</strong>
+                    <p>Limpeza de pele profissional: cada etapa pensada para a saúde da sua pele. Indicada para todos os tipos de pele! Me chama no DM.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================================================================
+     SEÇÃO 4: ESTRATÉGIA DE HASHTAGS
+     ================================================================ -->
+<section id="hashtags" style="background: rgba(212,169,164,0.08);">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Estratégia de Hashtags</h2>
+        <p class="section-subtitle">3 grupos organizados por categoria — alterne entre posts para maior alcance</p>
+
+        <!-- Grupo 1 -->
+        <div class="hashtag-group group-1">
+            <div class="hashtag-group-header">
+                <h3>Grupo 1 — Procedimentos Injetáveis</h3>
+                <p>Usar em posts sobre Botox, Preenchimento, Bioestimulador, Rinomodelação</p>
+            </div>
+            <div class="hashtag-group-body">
+                <div class="hashtag-tags">
+                    <span class="hashtag-tag">#harmonizacaofacial</span>
+                    <span class="hashtag-tag">#harmonizacao</span>
+                    <span class="hashtag-tag">#botox</span>
+                    <span class="hashtag-tag">#toxinabotulinica</span>
+                    <span class="hashtag-tag">#preenchimentofacial</span>
+                    <span class="hashtag-tag">#preenchimentolabial</span>
+                    <span class="hashtag-tag">#acidohialuronico</span>
+                    <span class="hashtag-tag">#bioestimuladordecolageno</span>
+                    <span class="hashtag-tag">#bioestimulador</span>
+                    <span class="hashtag-tag">#rinomodelacao</span>
+                    <span class="hashtag-tag">#preenchimento</span>
+                    <span class="hashtag-tag">#lipfiller</span>
+                    <span class="hashtag-tag">#rejuvenescimentofacial</span>
+                    <span class="hashtag-tag">#esteticaavancada</span>
+                    <span class="hashtag-tag">#esteticainjetavel</span>
+                    <span class="hashtag-tag">#procedimentoestetico</span>
+                    <span class="hashtag-tag">#procedimentofacial</span>
+                    <span class="hashtag-tag">#colageno</span>
+                    <span class="hashtag-tag">#harmonizacaonatural</span>
+                    <span class="hashtag-tag">#belezanatural</span>
+                    <span class="hashtag-tag">#antesedepois</span>
+                    <span class="hashtag-tag">#resultadonatural</span>
+                    <span class="hashtag-tag">#esteticasegura</span>
+                    <span class="hashtag-tag">#esteticacomresponsabilidade</span>
+                    <span class="hashtag-tag">#pelejovem</span>
+                    <span class="hashtag-tag">#firmezadapele</span>
+                    <span class="hashtag-tag">#flacidezfacial</span>
+                    <span class="hashtag-tag">#contornofacial</span>
+                    <span class="hashtag-tag">#liftingsemcirurgia</span>
+                    <span class="hashtag-tag">#autoestima</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grupo 2 -->
+        <div class="hashtag-group group-2">
+            <div class="hashtag-group-header">
+                <h3>Grupo 2 — Skincare</h3>
+                <p>Usar em posts sobre Limpeza de Pele, skincare</p>
+            </div>
+            <div class="hashtag-group-body">
+                <div class="hashtag-tags">
+                    <span class="hashtag-tag">#skincare</span>
+                    <span class="hashtag-tag">#cuidadoscomapele</span>
+                    <span class="hashtag-tag">#limpezadepele</span>
+                    <span class="hashtag-tag">#pelesaudavel</span>
+                    <span class="hashtag-tag">#pelelimpa</span>
+                    <span class="hashtag-tag">#pelelinda</span>
+                    <span class="hashtag-tag">#peleiluminada</span>
+                    <span class="hashtag-tag">#rotinaskincare</span>
+                    <span class="hashtag-tag">#skincarebrasil</span>
+                    <span class="hashtag-tag">#dicasdeskincare</span>
+                    <span class="hashtag-tag">#tipsdepele</span>
+                    <span class="hashtag-tag">#dermatologia</span>
+                    <span class="hashtag-tag">#acne</span>
+                    <span class="hashtag-tag">#cravos</span>
+                    <span class="hashtag-tag">#manchasnopele</span>
+                    <span class="hashtag-tag">#protetorosolar</span>
+                    <span class="hashtag-tag">#hidratacaofacial</span>
+                    <span class="hashtag-tag">#esfoliacaofacial</span>
+                    <span class="hashtag-tag">#mascarafacial</span>
+                    <span class="hashtag-tag">#tratamentofacial</span>
+                    <span class="hashtag-tag">#tratamentodepele</span>
+                    <span class="hashtag-tag">#peledescansada</span>
+                    <span class="hashtag-tag">#peleincrivel</span>
+                    <span class="hashtag-tag">#glowup</span>
+                    <span class="hashtag-tag">#peleperfeita</span>
+                    <span class="hashtag-tag">#skincaretips</span>
+                    <span class="hashtag-tag">#cuidadopessoal</span>
+                    <span class="hashtag-tag">#bemestar</span>
+                    <span class="hashtag-tag">#saudedapele</span>
+                    <span class="hashtag-tag">#beautycare</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grupo 3 -->
+        <div class="hashtag-group group-3">
+            <div class="hashtag-group-header">
+                <h3>Grupo 3 — Localização / Campinas</h3>
+                <p>Incluir 5-8 em TODOS os posts</p>
+            </div>
+            <div class="hashtag-group-body">
+                <div class="hashtag-tags">
+                    <span class="hashtag-tag">#campinas</span>
+                    <span class="hashtag-tag">#campinassp</span>
+                    <span class="hashtag-tag">#taquaral</span>
+                    <span class="hashtag-tag">#esteticacampinas</span>
+                    <span class="hashtag-tag">#esteticaemcampinas</span>
+                    <span class="hashtag-tag">#harmonizacaocampinas</span>
+                    <span class="hashtag-tag">#botoxcampinas</span>
+                    <span class="hashtag-tag">#preenchimentocampinas</span>
+                    <span class="hashtag-tag">#esteticistacampinas</span>
+                    <span class="hashtag-tag">#clinicadeesteticacampinas</span>
+                    <span class="hashtag-tag">#campinaseregiao</span>
+                    <span class="hashtag-tag">#belezacampinas</span>
+                    <span class="hashtag-tag">#saudecampinas</span>
+                    <span class="hashtag-tag">#taquaralcampinas</span>
+                    <span class="hashtag-tag">#campinascity</span>
+                    <span class="hashtag-tag">#vidasaudavelcampinas</span>
+                    <span class="hashtag-tag">#bemestarcampinas</span>
+                    <span class="hashtag-tag">#procedimentocampinas</span>
+                    <span class="hashtag-tag">#drasabrinasilverio</span>
+                    <span class="hashtag-tag">#skincarecampinas</span>
+                    <span class="hashtag-tag">#cuidadocampinas</span>
+                    <span class="hashtag-tag">#interiordesp</span>
+                    <span class="hashtag-tag">#saopaulo</span>
+                    <span class="hashtag-tag">#interior</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dicas de Uso -->
+        <div class="tips-box">
+            <h3>Dicas de Uso</h3>
+            <ul>
+                <li>20-25 hashtags por post (não ultrapassar 30)</li>
+                <li>Colocar no primeiro comentário ou final da legenda</li>
+                <li>Alternar entre posts — NUNCA repetir o mesmo bloco idêntico</li>
+                <li>Sempre incluir <strong>#drasabrinasilverio</strong></li>
+                <li>A cada 30 dias, verificar quais hashtags trazem mais alcance</li>
+            </ul>
+        </div>
+
+        <!-- Resumo Visual da Semana -->
+        <div style="margin-top: 40px;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--rose-dark); text-align: center; margin-bottom: 20px;">Resumo Visual da Semana</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="day-name">Segunda</div>
+                    <div class="day-task">Reels de transformação</div>
+                </div>
+                <div class="summary-item">
+                    <div class="day-name">Terça</div>
+                    <div class="day-task">Carrossel educativo</div>
+                </div>
+                <div class="summary-item">
+                    <div class="day-name">Quarta</div>
+                    <div class="day-task">Stories interativos</div>
+                </div>
+                <div class="summary-item">
+                    <div class="day-name">Quinta</div>
+                    <div class="day-task">Reels de procedimento</div>
+                </div>
+                <div class="summary-item">
+                    <div class="day-name">Sexta</div>
+                    <div class="day-task">Post de resultado/depoimento</div>
+                </div>
+                <div class="summary-item">
+                    <div class="day-name">Sábado</div>
+                    <div class="day-task">Reels trend</div>
+                </div>
+                <div class="summary-item">
+                    <div class="day-name">Domingo</div>
+                    <div class="day-task">Stories leves</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="page-footer">
+    <p>Documento elaborado para <strong>@dra.sabrinasilverio</strong> — Campinas/SP.</p>
+    <p>Todos os preços devem ser informados apenas via DM ou consulta presencial.</p>
+</footer>
+
+</body>
+</html>
