@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anúncio V2 — Dra. Sabrina Silvério</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    min-height: 100vh; background: #111; font-family: 'Montserrat', sans-serif; gap: 20px;
+  }
+  canvas { border-radius: 16px; box-shadow: 0 0 80px rgba(0,0,0,0.6); height: 85vh; width: auto; }
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .controls button {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: #fff;
+    padding: 12px 30px; border-radius: 10px; font-size: 15px; font-family: 'Montserrat', sans-serif;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .controls button:hover { background: rgba(255,255,255,0.2); }
+  .controls button.primary { background: #25D366; border-color: #25D366; font-weight: 600; }
+  .controls button.primary:hover { background: #1fba59; }
+  .status { color: rgba(255,255,255,0.5); font-size: 13px; font-family: 'Montserrat', sans-serif; text-align: center; min-height: 20px; }
+  .progress-outer { width: 360px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+  .progress-inner { height: 100%; width: 0%; background: linear-gradient(90deg, #c9a87c, #8b6f5e); border-radius: 3px; transition: width 0.1s linear; }
+</style>
+</head>
+<body>
+<div class="status" id="status">Carregando imagens...</div>
+<canvas id="canvas" width="1080" height="1920"></canvas>
+<div class="progress-outer"><div class="progress-inner" id="progressBar"></div></div>
+<div class="controls">
+  <button onclick="playAnimation()">▶ Play</button>
+  <button onclick="playAnimation()" id="replayBtn" style="display:none">↻ Replay</button>
+  <button class="primary" onclick="exportVideo()" id="exportBtn" style="display:none">⬇ Exportar V\u00EDdeo</button>
+</div>
+
+<script src="img_data.js"></script>
+
+<script>
+var W = 1080, H = 1920;
+var DURATION = 15;
+var FPS = 30;
+var ROSE = '#c9a87c', BROWN = '#8b6f5e', DARK_BG = '#0a0a0a';
+
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+var images = {};
+var imagesLoaded = 0;
+var keys = Object.keys(IMAGE_DATA);
+
+function loadImages() {
+  return new Promise(function(resolve) {
+    for (var k = 0; k < keys.length; k++) {
+      (function(key) {
+        var img = new Image();
+        img.onload = function() {
+          images[key] = img;
+          imagesLoaded++;
+          document.getElementById('status').textContent = 'Carregando... ' + imagesLoaded + '/' + keys.length;
+          if (imagesLoaded === keys.length) {
+            document.getElementById('status').textContent = 'Pronto! Clique em Play.';
+            resolve();
+          }
+        };
+        img.onerror = function() { imagesLoaded++; if (imagesLoaded === keys.length) resolve(); };
+        img.src = IMAGE_DATA[key];
+      })(keys[k]);
+    }
+  });
+}
+
+// === EASING ===
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+function easeInOutCubic(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
+function easeOutBack(t) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t-1,3) + c1 * Math.pow(t-1,2); }
+function clamp01(t) { return Math.max(0, Math.min(1, t)); }
+
+// === DRAW HELPERS ===
+function drawImageCover(img, x, y, w, h) {
+  if (!img) return;
+  var ir = img.width / img.height, cr = w / h;
+  var sw, sh, sx, sy;
+  if (ir > cr) { sh = img.height; sw = sh * cr; sx = (img.width - sw) / 2; sy = 0; }
+  else { sw = img.width; sh = sw / cr; sx = 0; sy = (img.height - sh) / 2; }
+  ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+}
+
+function roundRect(x, y, w, h, r) {
+  ctx.beginPath(); ctx.moveTo(x+r, y); ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r); ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h); ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r); ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y); ctx.closePath();
+}
+
+// Draw text with shadow for readability
+function textWithShadow(text, x, y, shadowBlur) {
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.8)';
+  ctx.shadowBlur = shadowBlur || 15;
+  ctx.shadowOffsetX = 2;
+  ctx.shadowOffsetY = 2;
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+// ============================================================
+// V2 TIMELINE (15 seconds total)
+//
+// CENA 1: 0-3s    HOOK — Antes/depois harmonização + texto impacto
+// CENA 2: 2.5-5s  Antes/depois labial
+// CENA 3: 4.5-8s  Foto Sabrina + credenciais
+// CENA 4: 7.5-11s Antes/depois rejuvenescimento
+// CENA 5: 10.5-15s CTA final — Sabrina + WhatsApp
+// ============================================================
+
+// ============================================================
+// CENA 1 — HOOK: Antes/depois harmonização + texto impacto (0-3s)
+// ============================================================
+function drawCena1(t) {
+  var s = 0, e = 3.5;
+  if (t > e + 0.5) return;
+  var fadeIn = clamp01(t / 0.3); // fade in rapido
+  var fadeOut = clamp01((e - t) / 0.5);
+  var alpha = fadeIn * fadeOut;
+  ctx.save(); ctx.globalAlpha = alpha;
+
+  // Fundo preto
+  ctx.fillStyle = DARK_BG; ctx.fillRect(0, 0, W, H);
+
+  // Imagem INTEIRA aparece de cara — sem reveal, sem espera
+  if (images.harm1) {
+    var dW = W;
+    var dH = dW * (images.harm1.height / images.harm1.width);
+    var dY = (H - dH) / 2 - 80; // um pouco pra cima pra dar espaço pro texto
+    ctx.drawImage(images.harm1, 0, dY, dW, dH);
+  }
+
+  // Gradiente escuro embaixo pra texto
+  var grad = ctx.createLinearGradient(0, H * 0.55, 0, H);
+  grad.addColorStop(0, 'rgba(0,0,0,0)');
+  grad.addColorStop(0.4, 'rgba(0,0,0,0.7)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.95)');
+  ctx.fillStyle = grad; ctx.fillRect(0, H * 0.55, W, H * 0.45);
+
+  // Gradiente escuro em cima (sutil)
+  var topGrad = ctx.createLinearGradient(0, 0, 0, H * 0.15);
+  topGrad.addColorStop(0, 'rgba(0,0,0,0.5)');
+  topGrad.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = topGrad; ctx.fillRect(0, 0, W, H * 0.15);
+
+  // HOOK TEXT — grande, bold, impossível de ignorar
+  var hookP = easeOutCubic(clamp01((t - 0.2) / 0.5));
+  ctx.globalAlpha = alpha * hookP;
+  ctx.fillStyle = '#fff';
+  ctx.font = '700 68px "Playfair Display", serif';
+  ctx.textAlign = 'center';
+  textWithShadow('Olha o que 1 sess\u00E3o', W/2, H * 0.75 + 20*(1-hookP));
+  textWithShadow('de harmoniza\u00E7\u00E3o fez', W/2, H * 0.75 + 80 + 20*(1-hookP));
+
+  // Labels ANTES / DEPOIS
+  var labP = easeOutCubic(clamp01((t - 0.5) / 0.4));
+  ctx.globalAlpha = alpha * labP;
+  ctx.font = '700 38px "Montserrat", sans-serif';
+  ctx.textAlign = 'left';
+  textWithShadow('ANTES', 60, H * 0.48);
+  ctx.textAlign = 'right';
+  textWithShadow('DEPOIS', W - 60, H * 0.48);
+
+  // Linha central tracejada
+  ctx.globalAlpha = alpha * labP * 0.4;
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 3;
+  ctx.setLineDash([12, 8]);
+  ctx.beginPath(); ctx.moveTo(W/2, H*0.1); ctx.lineTo(W/2, H*0.55); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Pill "Harmonização Facial" no topo
+  var pillP = easeOutBack(clamp01((t - 0.3) / 0.5));
+  ctx.globalAlpha = alpha * pillP;
+  ctx.save(); ctx.translate(W/2, 80); ctx.scale(pillP, pillP);
+  ctx.font = '600 36px "Playfair Display", serif';
+  var pw = ctx.measureText('Harmoniza\u00E7\u00E3o Facial').width;
+  roundRect(-(pw/2+30), -24, pw+60, 56, 28);
+  ctx.fillStyle = 'rgba(139,111,94,0.9)'; ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.textAlign = 'center';
+  ctx.fillText('Harmoniza\u00E7\u00E3o Facial', 0, 10);
+  ctx.restore();
+
+  ctx.restore();
+}
+
+// ============================================================
+// CENA 2 — Antes/depois labial (2.5-5s)
+// ============================================================
+function drawCena2(t) {
+  var s = 3, e = 6.5;
+  if (t < s - 0.3 || t > e + 0.5) return;
+  var fadeIn = clamp01((t-s)/0.4), fadeOut = clamp01((e-t)/0.5);
+  var alpha = fadeIn * fadeOut;
+  ctx.save(); ctx.globalAlpha = alpha;
+
+  ctx.fillStyle = DARK_BG; ctx.fillRect(0, 0, W, H);
+
+  if (images.labial) {
+    var scale = 0.85;
+    var dW = W * scale;
+    var dH = dW * (images.labial.height / images.labial.width);
+    var dX = (W - dW) / 2;
+    var dY = (H - dH) / 2 - 80;
+    ctx.drawImage(images.labial, dX, dY, dW, dH);
+  }
+
+  // Gradiente embaixo
+  var grad = ctx.createLinearGradient(0, H * 0.55, 0, H);
+  grad.addColorStop(0, 'rgba(0,0,0,0)');
+  grad.addColorStop(0.4, 'rgba(0,0,0,0.7)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.95)');
+  ctx.fillStyle = grad; ctx.fillRect(0, H*0.55, W, H*0.45);
+
+  // Texto hook
+  var hookP = easeOutCubic(clamp01((t-s-0.2)/0.5));
+  ctx.globalAlpha = alpha * hookP;
+  ctx.fillStyle = '#fff';
+  ctx.font = '700 64px "Playfair Display", serif'; ctx.textAlign = 'center';
+  textWithShadow('Preenchimento Labial', W/2, H*0.78 + 15*(1-hookP));
+  ctx.font = '400 36px "Montserrat", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  textWithShadow('Resultado natural e imediato', W/2, H*0.78 + 65 + 15*(1-hookP));
+
+  // Labels
+  var labP = easeOutCubic(clamp01((t-s-0.3)/0.4));
+  ctx.globalAlpha = alpha * labP;
+  ctx.font = '700 34px "Montserrat", sans-serif'; ctx.fillStyle = '#fff';
+  ctx.textAlign = 'left'; textWithShadow('ANTES', 100, H*0.45);
+  ctx.textAlign = 'right'; textWithShadow('DEPOIS', W-100, H*0.45);
+
+  ctx.restore();
+}
+
+// ============================================================
+// CENA 3 — Foto Sabrina + credenciais (4.5-8s)
+// ============================================================
+function drawCena3(t) {
+  var s = 4.5, e = 8;
+  if (t < s - 0.3 || t > e + 0.5) return;
+  var fadeIn = clamp01((t-s)/0.5), fadeOut = clamp01((e-t)/0.5);
+  var alpha = fadeIn * fadeOut;
+  ctx.save(); ctx.globalAlpha = alpha;
+
+  ctx.fillStyle = DARK_BG; ctx.fillRect(0, 0, W, H);
+
+  // Foto da Sabrina com zoom sutil
+  if (images.sabrina) {
+    var z = 1 + (t-s) * 0.006;
+    ctx.save();
+    ctx.translate((W - W*z)/2, (H - H*z)/2);
+    ctx.scale(z, z);
+    drawImageCover(images.sabrina, 0, 0, W, H);
+    ctx.restore();
+  }
+
+  // Gradiente escuro embaixo
+  var grad = ctx.createLinearGradient(0, H*0.45, 0, H);
+  grad.addColorStop(0, 'rgba(0,0,0,0)');
+  grad.addColorStop(0.5, 'rgba(0,0,0,0.6)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.93)');
+  ctx.fillStyle = grad; ctx.fillRect(0, H*0.45, W, H*0.55);
+
+  // Nome
+  var nameP = easeOutCubic(clamp01((t-s-0.4)/0.6));
+  ctx.globalAlpha = alpha * nameP;
+  ctx.fillStyle = '#fff';
+  ctx.font = '700 62px "Playfair Display", serif'; ctx.textAlign = 'center';
+  textWithShadow('Dra. Sabrina Silv\u00E9rio', W/2, H*0.72 + 25*(1-nameP));
+
+  // Linha
+  var lineP = easeOutCubic(clamp01((t-s-0.7)/0.4));
+  var lw = 180 * lineP;
+  ctx.strokeStyle = ROSE; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(W/2-lw/2, H*0.72+25); ctx.lineTo(W/2+lw/2, H*0.72+25); ctx.stroke();
+
+  // Credenciais
+  var credP = easeOutCubic(clamp01((t-s-0.8)/0.5));
+  ctx.globalAlpha = alpha * credP;
+  ctx.font = '400 34px "Montserrat", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  textWithShadow('Prof\u00AA de P\u00F3s-Gradua\u00E7\u00E3o', W/2, H*0.72 + 75);
+  textWithShadow('Especialista em Harmoniza\u00E7\u00E3o Facial', W/2, H*0.72 + 120);
+
+  // Tratamentos
+  var trP = easeOutCubic(clamp01((t-s-1.2)/0.5));
+  ctx.globalAlpha = alpha * trP * 0.6;
+  ctx.font = '400 28px "Montserrat", sans-serif';
+  ctx.fillStyle = '#fff';
+  textWithShadow('Botox  \u00B7  Preenchimento  \u00B7  Harmoniza\u00E7\u00E3o  \u00B7  Gl\u00FAteos', W/2, H*0.72 + 185);
+
+  // Localização
+  var locP = easeOutCubic(clamp01((t-s-1.5)/0.4));
+  ctx.globalAlpha = alpha * locP;
+  ctx.font = '400 30px "Montserrat", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  textWithShadow('\uD83D\uDCCD Taquaral, Campinas', W/2, H*0.72 + 240);
+
+  ctx.restore();
+}
+
+// ============================================================
+// CENA 4 — Antes/depois rejuvenescimento (7.5-11s)
+// ============================================================
+function drawCena4(t) {
+  var s = 6, e = 10;
+  if (t < s - 0.3 || t > e + 0.5) return;
+  var fadeIn = clamp01((t-s)/0.4), fadeOut = clamp01((e-t)/0.5);
+  var alpha = fadeIn * fadeOut;
+  ctx.save(); ctx.globalAlpha = alpha;
+
+  ctx.fillStyle = DARK_BG; ctx.fillRect(0, 0, W, H);
+
+  if (images.rino) {
+    var dW = W;
+    var dH = dW * (images.rino.height / images.rino.width);
+    var dY = (H - dH) / 2 - 80;
+    ctx.drawImage(images.rino, 0, dY, dW, dH);
+  }
+
+  // Gradiente embaixo
+  var grad = ctx.createLinearGradient(0, H*0.55, 0, H);
+  grad.addColorStop(0, 'rgba(0,0,0,0)');
+  grad.addColorStop(0.4, 'rgba(0,0,0,0.7)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.95)');
+  ctx.fillStyle = grad; ctx.fillRect(0, H*0.55, W, H*0.45);
+
+  // Texto
+  var hookP = easeOutCubic(clamp01((t-s-0.2)/0.5));
+  ctx.globalAlpha = alpha * hookP;
+  ctx.fillStyle = '#fff';
+  ctx.font = '700 64px "Playfair Display", serif'; ctx.textAlign = 'center';
+  textWithShadow('Rejuvenescimento', W/2, H*0.78 + 15*(1-hookP));
+  ctx.font = '400 36px "Montserrat", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  textWithShadow('Resultado que fala por si', W/2, H*0.78 + 65 + 15*(1-hookP));
+
+  // Labels
+  var labP = easeOutCubic(clamp01((t-s-0.3)/0.4));
+  ctx.globalAlpha = alpha * labP;
+  ctx.font = '700 34px "Montserrat", sans-serif'; ctx.fillStyle = '#fff';
+  ctx.textAlign = 'left'; textWithShadow('ANTES', 60, H*0.48);
+  ctx.textAlign = 'right'; textWithShadow('DEPOIS', W-60, H*0.48);
+
+  // Linha central
+  ctx.globalAlpha = alpha * labP * 0.4;
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 3;
+  ctx.setLineDash([12, 8]);
+  ctx.beginPath(); ctx.moveTo(W/2, H*0.1); ctx.lineTo(W/2, H*0.55); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.restore();
+}
+
+// ============================================================
+// CENA 5 — CTA FINAL (10.5-15s)
+// ============================================================
+function drawCena5(t) {
+  var s = 9.5, e = DURATION;
+  if (t < s - 0.3) return;
+  var fadeIn = clamp01((t-s)/0.5);
+  ctx.save(); ctx.globalAlpha = fadeIn;
+
+  ctx.fillStyle = DARK_BG; ctx.fillRect(0, 0, W, H);
+
+  // Foto Sabrina zoom
+  if (images.sabrina) {
+    var z = 1 + (t-s) * 0.006;
+    ctx.save();
+    ctx.translate((W - W*z)/2, (H - H*z)/2);
+    ctx.scale(z, z);
+    drawImageCover(images.sabrina, 0, 0, W, H);
+    ctx.restore();
+  }
+
+  // Gradiente
+  var og = ctx.createLinearGradient(0, H*0.2, 0, H);
+  og.addColorStop(0, 'rgba(0,0,0,0)');
+  og.addColorStop(0.4, 'rgba(0,0,0,0.6)');
+  og.addColorStop(1, 'rgba(0,0,0,0.95)');
+  ctx.fillStyle = og; ctx.fillRect(0, 0, W, H);
+
+  // Logo topo
+  if (images.logo) {
+    var la = easeOutCubic(clamp01((t-s-0.2)/0.5));
+    ctx.globalAlpha = fadeIn * la;
+    ctx.save();
+    ctx.beginPath(); ctx.arc(W/2, 100, 48, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,0.93)'; ctx.fill(); ctx.clip();
+    ctx.drawImage(images.logo, W/2-40, 60, 80, 80);
+    ctx.restore();
+  }
+
+  var tY = H * 0.55;
+
+  // Título
+  var tp = easeOutCubic(clamp01((t-s-0.4)/0.7));
+  ctx.globalAlpha = fadeIn * tp;
+  ctx.fillStyle = '#fff';
+  ctx.font = '700 64px "Playfair Display", serif'; ctx.textAlign = 'center';
+  textWithShadow('Agende sua', W/2, tY + 25*(1-tp));
+  textWithShadow('Avalia\u00E7\u00E3o Gratuita', W/2, tY + 75 + 25*(1-tp));
+
+  // Linha
+  var lnp = easeOutCubic(clamp01((t-s-0.8)/0.4));
+  var lnw = 180 * lnp;
+  ctx.strokeStyle = ROSE; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(W/2-lnw/2, tY+105); ctx.lineTo(W/2+lnw/2, tY+105); ctx.stroke();
+
+  // Subtítulo
+  var sp = easeOutCubic(clamp01((t-s-0.9)/0.5));
+  ctx.globalAlpha = fadeIn * sp;
+  ctx.font = '300 30px "Montserrat", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  textWithShadow('Resultado natural. Sem exageros.', W/2, tY+145);
+
+  // Carros-chefe (destaque)
+  var trP = easeOutCubic(clamp01((t-s-1.1)/0.5));
+  ctx.globalAlpha = fadeIn * trP * 0.9;
+  ctx.font = '600 36px "Montserrat", sans-serif';
+  ctx.fillStyle = '#fff'; ctx.textAlign = 'center';
+  textWithShadow('Botox  \u00B7  Preenchimento', W/2, tY+195);
+  textWithShadow('Harmoniza\u00E7\u00E3o  \u00B7  Gl\u00FAteos', W/2, tY+240);
+
+  // "Também realizamos:" + lista secundária
+  var tr2P = easeOutCubic(clamp01((t-s-1.5)/0.5));
+  ctx.globalAlpha = fadeIn * tr2P * 0.55;
+  ctx.font = '400 28px "Montserrat", sans-serif';
+  ctx.fillStyle = '#fff';
+  textWithShadow('Tamb\u00E9m realizamos:', W/2, tY+300);
+  ctx.font = '300 26px "Montserrat", sans-serif';
+  textWithShadow('Bioestimulador  \u00B7  Ultrassom Microfocado', W/2, tY+340);
+  textWithShadow('Fios de PDO  \u00B7  Limpeza de Pele', W/2, tY+375);
+
+  // Botão WhatsApp
+  var bp = easeOutBack(clamp01((t-s-1.3)/0.5));
+  ctx.globalAlpha = fadeIn * bp;
+  ctx.save(); ctx.translate(W/2, tY+440); ctx.scale(bp, bp);
+  ctx.shadowColor = 'rgba(37,211,102,0.5)'; ctx.shadowBlur = 40;
+  roundRect(-220, -40, 440, 80, 40);
+  ctx.fillStyle = '#25D366'; ctx.fill(); ctx.shadowBlur = 0;
+  ctx.fillStyle = '#fff';
+  ctx.font = '600 34px "Montserrat", sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('\uD83D\uDCF2  WhatsApp', 0, 12);
+  ctx.restore();
+
+  // Pulse
+  if (bp >= 1) {
+    var pulse = Math.sin((t-s-1.8)*4)*0.03+1;
+    ctx.save(); ctx.translate(W/2, tY+440); ctx.scale(pulse, pulse);
+    ctx.globalAlpha = fadeIn * 0.15;
+    roundRect(-230, -50, 460, 100, 50);
+    ctx.fillStyle = '#25D366'; ctx.fill();
+    ctx.restore();
+  }
+
+  // Localização
+  var locp = easeOutCubic(clamp01((t-s-1.8)/0.4));
+  ctx.globalAlpha = fadeIn * locp;
+  ctx.font = '400 26px "Montserrat", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.6)'; ctx.textAlign = 'center';
+  textWithShadow('\uD83D\uDCCD Taquaral, Campinas', W/2, tY+520);
+
+  // Credenciais
+  var cp = easeOutCubic(clamp01((t-s-2.0)/0.4));
+  ctx.globalAlpha = fadeIn * cp;
+  ctx.font = '300 22px "Montserrat", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  textWithShadow('Prof\u00AA de P\u00F3s-Gradua\u00E7\u00E3o em Harmoniza\u00E7\u00E3o Facial', W/2, tY+555);
+
+  ctx.restore();
+}
+
+// ============================================================
+// BARRA DE PROGRESSO
+// ============================================================
+function drawProgressBar(t) {
+  var p = t / DURATION;
+  ctx.save();
+  var bg = ctx.createLinearGradient(0, 0, W*p, 0);
+  bg.addColorStop(0, ROSE); bg.addColorStop(1, BROWN);
+  ctx.fillStyle = bg;
+  roundRect(0, 0, W*p, 6, 3); ctx.fill();
+  ctx.restore();
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderFrame(t) {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = DARK_BG; ctx.fillRect(0, 0, W, H);
+
+  drawCena1(t);   // 0-3.5s   Hook: harmonização antes/depois
+  drawCena2(t);   // 3-6.5s   Labial antes/depois
+  drawCena4(t);   // 6-10s    Rejuvenescimento antes/depois
+  drawCena5(t);   // 9.5-15s  CTA final
+  drawProgressBar(t);
+}
+
+// ============================================================
+// PLAYBACK
+// ============================================================
+var animationId = null, startTime = null;
+
+function playAnimation() {
+  if (animationId) cancelAnimationFrame(animationId);
+  startTime = performance.now();
+  document.getElementById('status').textContent = 'Reproduzindo...';
+  document.getElementById('replayBtn').style.display = 'none';
+  document.getElementById('exportBtn').style.display = 'none';
+
+  function tick() {
+    var elapsed = (performance.now() - startTime) / 1000;
+    var t = Math.min(elapsed, DURATION);
+    renderFrame(t);
+    document.getElementById('progressBar').style.width = (t/DURATION*100) + '%';
+    if (elapsed < DURATION) {
+      animationId = requestAnimationFrame(tick);
+    } else {
+      document.getElementById('status').textContent = 'Finalizado! Exporte ou clique Replay.';
+      document.getElementById('replayBtn').style.display = 'inline-block';
+      document.getElementById('exportBtn').style.display = 'inline-block';
+      animationId = null;
+    }
+  }
+  tick();
+}
+
+// ============================================================
+// EXPORT VIDEO
+// ============================================================
+async function exportVideo() {
+  var btn = document.getElementById('exportBtn');
+  btn.textContent = '\u23F3 Exportando...'; btn.disabled = true;
+  var stream = canvas.captureStream(FPS);
+  var mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm';
+  var recorder = new MediaRecorder(stream, { mimeType: mimeType, videoBitsPerSecond: 8000000 });
+  var chunks = [];
+  recorder.ondataavailable = function(e) { if (e.data.size > 0) chunks.push(e.data); };
+  recorder.onstop = function() {
+    var blob = new Blob(chunks, { type: mimeType });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href = url;
+    a.download = 'anuncio-v2-dra-sabrina.webm'; a.click(); URL.revokeObjectURL(url);
+    btn.textContent = '\u2B07 Exportar V\u00EDdeo'; btn.disabled = false;
+    document.getElementById('status').textContent = 'V\u00EDdeo exportado!';
+  };
+  recorder.start();
+  var totalFrames = DURATION * FPS;
+  for (var frame = 0; frame <= totalFrames; frame++) {
+    renderFrame(frame / FPS);
+    document.getElementById('progressBar').style.width = (frame/totalFrames*100) + '%';
+    document.getElementById('status').textContent = 'Exportando... ' + Math.round(frame/totalFrames*100) + '%';
+    await new Promise(function(r) { setTimeout(r, 1000/FPS); });
+  }
+  recorder.stop();
+}
+
+// ============================================================
+// INIT
+// ============================================================
+loadImages().then(function() { renderFrame(0); });
+</script>
+</body>
+</html>
