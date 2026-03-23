@@ -184,18 +184,23 @@ function drawCompareScene(t, sceneStart, sceneEnd, img, label, subtitle, imgScal
   var imgAreaH = H - 260;
 
   if (img) {
-    // Draw at full width, keep aspect ratio, center vertically
+    // Reveal progress: 0 = fully hidden, 1 = fully shown
+    var rp = easeInOutCubic(clamp01((t-sceneStart-0.5)/1.2));
+    var revealX = W * rp;
+
+    // Draw image ONLY in revealed area (clip to prevent showing behind)
     var dW = W * imgScale;
     var dH = dW * (img.height / img.width);
     var dX = (W - dW) / 2;
     var dY = (imgAreaH - dH) / 2;
-    ctx.drawImage(img, dX, dY, dW, dH);
 
-    // Reveal: cortina escura saindo da esquerda pra direita
-    var rp = easeInOutCubic(clamp01((t-sceneStart-0.5)/1.2));
-    if (rp < 1) {
-      ctx.fillStyle = DARK_BG;
-      ctx.fillRect(W * rp, 0, W - (W * rp), imgAreaH);
+    if (rp > 0) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(0, 0, revealX, imgAreaH);
+      ctx.clip();
+      ctx.drawImage(img, dX, dY, dW, dH);
+      ctx.restore();
     }
 
     // Linha tracejada central
